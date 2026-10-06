@@ -1,0 +1,45 @@
+export const contactPage = {
+  title: { fa: 'تماس با ما', en: 'Contact us' },
+  text: {
+    fa: 'ما اینجا هستیم تا به شما کمک کنیم. در ارتباط باشید.',
+    en: 'We are here to help. Get in touch.',
+  },
+  infoTitle: { fa: 'اطلاعات تماس', en: 'Contact details' },
+  labels: {
+    address: { fa: 'آدرس', en: 'Address' },
+    phone: { fa: 'تلفن', en: 'Phone' },
+    email: { fa: 'ایمیل', en: 'Email' },
+    follow: { fa: 'ما را دنبال کنید', en: 'Follow us' },
+  },
+  // اطلاعات نمونه‌اند؛ با اطلاعات واقعی جایگزین کنید
+  address: { fa: 'تهران، ایران', en: 'Tehran, Iran' },
+  phone: '+98 21 1234 5678',
+  email: 'info@videocheckiran.com',
+  social: {
+    linkedin: 'https://www.linkedin.com/',
+    instagram: 'https://www.instagram.com/',
+    youtube: 'https://www.youtube.com/',
+  },
+  fields: {
+    name: { fa: 'نام و نام خانوادگی', en: 'Full name' },
+    namePh: { fa: 'نام خود را وارد کنید', en: 'Enter your name' },
+    email: { fa: 'ایمیل', en: 'Email' },
+    emailPh: { fa: 'ایمیل خود را وارد کنید', en: 'Enter your email' },
+    phone: {fa:'شماره تلفن', en: 'Phone number'},
+    phonePh: {fa:' شماره تلفن خود را وارد کنید', en: 'Enter your phone number'},
+    subject: { fa: 'موضوع', en: 'Subject' },
+    subjectPh: { fa: 'انتخاب موضوع', en: 'Select a subject' },
+    message: { fa: 'پیام', en: 'Message' },
+    messagePh: { fa: 'پیام خود را وارد کنید', en: 'Enter your message' },
+  },
+  subjects: [
+    { value: 'general', fa: 'سؤال عمومی', en: 'General question' },
+    { value: 'pricing', fa: 'قیمت و استعلام', en: 'Pricing' },
+    { value: 'support', fa: 'پشتیبانی فنی', en: 'Technical support' },
+    { value: 'partnership', fa: 'همکاری', en: 'Partnership' },
+  ],
+  send: { fa: 'ارسال پیام', en: 'Send message' },
+  sending: { fa: 'در حال ارسال...', en: 'Sending...' },
+  ok: { fa: 'پیام شما ارسال شد. به‌زودی پاسخ می‌دهیم.', en: 'Your message has been sent. We will reply soon.' },
+  err: { fa: 'ارسال انجام نشد. لطفاً دوباره تلاش کنید.', en: 'Could not send. Please try again.' },
+};

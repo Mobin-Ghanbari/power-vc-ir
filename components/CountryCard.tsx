@@ -19,7 +19,9 @@ export default function CountryCard({ lang, p }: { lang: Lang; p: (typeof projec
       </div>
       <div
         className="relative mt-4 aspect-video rounded-lg bg-cover bg-center"
-        style={{ backgroundImage: `url(/images/projects/${p.id}.jpg), linear-gradient(160deg,#1b3a78,#0a1f44)` }}
+        style={{
+              backgroundImage: `url(/images/projects/${p.id}.jpg), url(/images/projects/default.jpg), linear-gradient(160deg,#1b3a78,#0a1f44)`,
+          }}
       >
         <span className="absolute inset-0 grid place-items-center">
           <span className="grid h-12 w-12 place-items-center rounded-full bg-white/90 shadow">

@@ -60,7 +60,9 @@ export const sports = [
 export const otherSports = [
   { fa: 'هندبال', en: 'Handball' },
   { fa: 'تنیس', en: 'Tennis' },
-  { fa: 'اسنوکر', en: 'Snoker' },
+  { fa: 'اسنوکر', en: 'Snooker' },
   { fa: 'دومیدانی و میدانی', en: 'Athletics' },
+  { fa: 'تکواندو', en: 'Taekwondo' },
+  { fa: 'سوارکاری', en: 'Equestrian' },
   { fa: 'و ...', en: 'and more' },
 ];

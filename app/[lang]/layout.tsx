@@ -1,9 +1,9 @@
 import '../globals.css';
-import 'vazirmatn/Vazirmatn-Variable-font-face.css';
 import type { Metadata } from 'next';
 import { SITE_NAME, SITE_URL } from '@/lib/seo';
 import JsonLd from '@/components/JsonLd';
 import Header from '@/components/Header';
+import ChatWidget from '@/components/ChatWidget';
 import { langs, type Lang } from '@/lib/i18n';
 
 
@@ -35,7 +35,8 @@ export default async function RootLayout({
         <JsonLd />
         <Header lang={lang as Lang} />
         {children}
-    </body>
+        <ChatWidget lang={lang as Lang} />
+      </body>
     </html>
   );
 }

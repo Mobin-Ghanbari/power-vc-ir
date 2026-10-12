@@ -18,7 +18,7 @@ export const aboutPage = {
   // اعداد نمونه‌اند؛ با اعداد واقعی جایگزین کنید
   stats: [
     { icon: 'multi', value: '4+', label: { fa: 'رشتهٔ ورزشی', en: 'Sports covered' } },
-    { icon: 'globe', value: '7+', label: { fa: 'کشورهای فعال', en: 'Active countries' } },
+    { icon: 'globe', value: '10+', label: { fa: 'کشورهای فعال', en: 'Active countries' } },
     { icon: 'calendar', value: '50+', label: { fa: 'پروژهٔ انجام‌شده', en: 'Projects delivered' } },
     { icon: 'clock', value: '7+', label: { fa: 'سال تجربه', en: 'Years of experience' } },
   ],

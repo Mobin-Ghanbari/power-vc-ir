@@ -48,9 +48,9 @@ export default function ContactForm({ lang }: { lang: Lang }) {
 
       <Label id="c-email" text={f.email[lang]} required />
       <input id="c-email" name="email" type="email" required dir="ltr" placeholder={f.emailPh[lang]} className={`${input} text-start`} />
-    
+
       <Label id="c-phone" text={f.phone[lang]} required />
-      <input id="c-phone" name="phone" type="tel" required dir="ltr" placeholder={f.emailPh[lang]} className={`${input} text-start`} />
+      <input id="c-phone" name="phone" type="tel" required dir="ltr" placeholder={f.phonePh[lang]} className={`${input} text-start`} />
 
       <Label id="c-subject" text={f.subject[lang]} />
       <select id="c-subject" name="subject" defaultValue="" className={input}>

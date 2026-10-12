@@ -7,9 +7,9 @@ export default function Hero({ lang }: { lang: Lang }) {
   const h = home.hero;
   return (
     <section
-      className="flex min-h-[480px] items-center bg-navy bg-cover bg-center text-white md:min-h-[600px]"
+      className={`flex min-h-[480px] items-center bg-navy bg-cover bg-center text-white md:min-h-[600px]`}
       style={{
-        backgroundImage: `linear-gradient(to ${side}, rgba(10,31,68,.94) 30%, rgba(10,31,68,.2)), url(/images/hero.jpg)`,
+        backgroundImage: `linear-gradient(to ${side}, rgba(10,31,68,.94) 30%, rgba(10,31,68,.2)), url(/images/hero-${lang}.jpg)`,
       }}
     >
       <div className="mx-auto w-full max-w-6xl px-5 py-16">

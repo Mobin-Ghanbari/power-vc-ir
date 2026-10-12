@@ -21,7 +21,6 @@ const icons: Record<string, React.ReactNode> = {
 export default function ServiceCards({ lang }: { lang: Lang }) {
   const dir = lang === 'fa' ? 'rtl' : 'ltr';
   return (
-    // ترتیب کارت‌ها در هر دو زبان ثابت است (اجاره سمت چپ)
     <div dir="ltr" className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
       {services.map((s) => (
         <article

@@ -1,7 +1,4 @@
-'use client';
-
 import Link from 'next/link';
-import { useState } from 'react';
 import { otherSports, productsPage as p, sports } from '@/lib/products';
 import type { Lang } from '@/lib/i18n';
 
@@ -15,27 +12,20 @@ const icons: Record<string, React.ReactNode> = {
 const otherIds = ['handball', 'tennis', 'rugby', 'athletics', 'more'];
 
 export default function SportCards({ lang }: { lang: Lang }) {
-  const [sel, setSel] = useState<string | null>(null);
-  const cur = sports.find((s) => s.id === sel);
   const arrow = lang === 'fa' ? '←' : '→';
 
   return (
     <>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
         {sports.map((s) => (
-          <button
+          <Link
             key={s.id}
-            onClick={() => setSel(s.id)}
-            aria-pressed={sel === s.id}
-            className={`flex h-full flex-col overflow-hidden rounded-xl border bg-white text-start shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${
-              sel === s.id ? 'border-brand ring-2 ring-brand' : 'border-[#D6E0F2]'
-            }`}
+            href={`/${lang}/products/${s.id}/`}
+            className="flex h-full flex-col overflow-hidden rounded-xl border border-[#D6E0F2] bg-white text-start shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
           >
             <div
               className="aspect-[3/4] w-full bg-cover bg-center"
-              style={{
-                backgroundImage: `url(/images/sports/${s.id}.jpg), linear-gradient(160deg,#1b3a78,#0a1f44)`,
-              }}
+              style={{ backgroundImage: `url(/images/sports/${s.id}.jpg), linear-gradient(160deg,#1b3a78,#0a1f44)` }}
             />
             <div className="bg-brand py-2.5 text-center text-lg font-bold text-white">{s.name[lang]}</div>
             <div className="flex flex-1 flex-col p-4 text-sm leading-7 text-[#46557A]">
@@ -44,19 +34,9 @@ export default function SportCards({ lang }: { lang: Lang }) {
                 {arrow} {p.more[lang]}
               </span>
             </div>
-          </button>
+          </Link>
         ))}
       </div>
-
-      {cur && (
-        <div className="mt-6 rounded-xl border-s-4 border-brand bg-white p-6 shadow-sm">
-          <h2 className="text-2xl font-bold text-navy">{cur.name[lang]}</h2>
-          <p className="mt-3 max-w-2xl leading-8 text-[#46557A]">{cur.long[lang]}</p>
-          <Link href={`/${lang}/quote/`} className="mt-5 inline-block rounded-lg bg-brand px-6 py-2.5 font-bold text-white hover:opacity-90">
-            {p.quote[lang]}
-          </Link>
-        </div>
-      )}
 
       <section className="mt-10 rounded-xl bg-[#EAF0FC] p-6 md:p-8">
         <h2 className="text-xl font-bold text-navy">{p.otherTitle[lang]}</h2>

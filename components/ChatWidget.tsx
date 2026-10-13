@@ -10,14 +10,17 @@ import {
   type FAQItem,
 } from '@/lib/chatbot';
 
+interface ActionLink {
+  label: { fa: string; en: string };
+  href: string;
+}
+
 interface Message {
   id: string;
   sender: 'bot' | 'user';
   text: string;
-  actionButton?: {
-    label: { fa: string; en: string };
-    href: string;
-  };
+  actionButton?: ActionLink;
+  actionButtons?: ActionLink[];
   timestamp: string;
 }
 
@@ -25,15 +28,35 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
+  const [isTyping, setIsTyping] = useState(false);
+  const [isStreaming, setIsStreaming] = useState(false);
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const typingTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const streamIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const chips = getQuickChips();
   const dir = lang === 'fa' ? 'rtl' : 'ltr';
   const arrow = lang === 'fa' ? '←' : '→';
 
+  const clearAllTimers = () => {
+    if (typingTimerRef.current) {
+      clearTimeout(typingTimerRef.current);
+      typingTimerRef.current = null;
+    }
+    if (streamIntervalRef.current) {
+      clearInterval(streamIntervalRef.current);
+      streamIntervalRef.current = null;
+    }
+  };
+
   // Initialize welcome message
   const initChat = () => {
+    clearAllTimers();
+    setIsTyping(false);
+    setIsStreaming(false);
+
     const welcome: Message = {
       id: 'welcome',
       sender: 'bot',
@@ -48,16 +71,17 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
 
   useEffect(() => {
     initChat();
+    return () => clearAllTimers();
   }, [lang]);
 
-  // Scroll to bottom on new message
+  // Scroll to bottom whenever messages or typing state changes
   useEffect(() => {
     if (isOpen) {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [messages, isOpen]);
+  }, [messages, isTyping, isOpen]);
 
-  // Focus input when opened
+  // Focus input when chat window is opened
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => inputRef.current?.focus(), 150);
@@ -75,7 +99,76 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen]);
 
+  // Simulated typing pause + typewriter streaming function
+  const triggerBotResponse = (
+    fullText: string,
+    actionButton?: ActionLink,
+    actionButtons?: ActionLink[]
+  ) => {
+    clearAllTimers();
+    setIsTyping(true);
+    setIsStreaming(true);
+
+    // Realistic thinking pause (600ms–800ms)
+    typingTimerRef.current = setTimeout(() => {
+      setIsTyping(false);
+
+      const botMessageId = `bot-${Date.now()}`;
+      const now = new Date().toLocaleTimeString(lang === 'fa' ? 'fa-IR' : 'en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+
+      // Insert empty placeholder message to stream into
+      const initialBotMsg: Message = {
+        id: botMessageId,
+        sender: 'bot',
+        text: '',
+        timestamp: now,
+      };
+
+      setMessages((prev) => [...prev, initialBotMsg]);
+
+      let currentIndex = 0;
+      const chunkSize = 3; // stream 3 characters per tick for a smooth, natural flow
+      const totalLength = fullText.length;
+
+      streamIntervalRef.current = setInterval(() => {
+        currentIndex += chunkSize;
+        if (currentIndex >= totalLength) {
+          if (streamIntervalRef.current) {
+            clearInterval(streamIntervalRef.current);
+            streamIntervalRef.current = null;
+          }
+          setMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === botMessageId
+                ? {
+                    ...msg,
+                    text: fullText,
+                    actionButton,
+                    actionButtons,
+                  }
+                : msg
+            )
+          );
+          setIsStreaming(false);
+          setTimeout(() => inputRef.current?.focus(), 100);
+        } else {
+          const currentSlice = fullText.slice(0, currentIndex);
+          setMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === botMessageId ? { ...msg, text: currentSlice } : msg
+            )
+          );
+        }
+      }, 18);
+    }, 650);
+  };
+
   const handleChipClick = (faq: FAQItem) => {
+    if (isTyping || isStreaming) return;
+
     const now = new Date().toLocaleTimeString(lang === 'fa' ? 'fa-IR' : 'en-US', {
       hour: '2-digit',
       minute: '2-digit',
@@ -84,25 +177,18 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
     const userMsg: Message = {
       id: `user-${Date.now()}`,
       sender: 'user',
-      text: faq.chipLabel[lang],
+      text: faq.chipLabel ? faq.chipLabel[lang] : faq.answer[lang],
       timestamp: now,
     };
 
-    const botMsg: Message = {
-      id: `bot-${Date.now()}`,
-      sender: 'bot',
-      text: faq.answer[lang],
-      actionButton: faq.actionButton,
-      timestamp: now,
-    };
-
-    setMessages((prev) => [...prev, userMsg, botMsg]);
+    setMessages((prev) => [...prev, userMsg]);
+    triggerBotResponse(faq.answer[lang], faq.actionButton);
   };
 
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
     const query = inputValue.trim();
-    if (!query) return;
+    if (!query || isTyping || isStreaming) return;
 
     const now = new Date().toLocaleTimeString(lang === 'fa' ? 'fa-IR' : 'en-US', {
       hour: '2-digit',
@@ -116,38 +202,32 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
       timestamp: now,
     };
 
+    setMessages((prev) => [...prev, userMsg]);
+    setInputValue('');
+
     const match = findFAQAnswer(query);
 
-    let botMsg: Message;
     if (match) {
-      botMsg = {
-        id: `bot-${Date.now()}`,
-        sender: 'bot',
-        text: match.answer[lang],
-        actionButton: match.actionButton,
-        timestamp: now,
-      };
+      triggerBotResponse(match.answer[lang], match.actionButton);
     } else {
-      botMsg = {
-        id: `bot-${Date.now()}`,
-        sender: 'bot',
-        text: t.fallbackMessage[lang],
-        actionButton: {
-          label: t.fallbackCta,
-          href: '/quote/',
-        },
-        timestamp: now,
-      };
+      // Smart Fallback providing both Quote and Contact buttons
+      triggerBotResponse(
+        t.fallbackMessage[lang],
+        undefined,
+        [
+          { label: t.fallbackCtaQuote, href: '/quote/' },
+          { label: t.fallbackCtaContact, href: '/contact/' },
+        ]
+      );
     }
-
-    setMessages((prev) => [...prev, userMsg, botMsg]);
-    setInputValue('');
   };
 
   const formatHref = (href: string) => {
     const cleaned = href.startsWith('/') ? href : `/${href}`;
     return `/${lang}${cleaned}`;
   };
+
+  const isBusy = isTyping || isStreaming;
 
   return (
     <aside aria-label={t.title[lang]} dir={dir}>
@@ -198,7 +278,7 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
           aria-modal="true"
           className={`fixed bottom-24 ${
             lang === 'fa' ? 'left-4 sm:left-6' : 'right-4 sm:right-6'
-          } z-50 flex h-[540px] max-h-[calc(100vh-7.5rem)] w-[calc(100vw-2rem)] max-w-[390px] flex-col overflow-hidden rounded-2xl border border-[#D6E0F2] bg-white shadow-2xl transition-all duration-200 animate-in fade-in zoom-in-95`}
+          } z-50 flex h-[560px] max-h-[calc(100vh-7.5rem)] w-[calc(100vw-2rem)] max-w-[400px] flex-col overflow-hidden rounded-2xl border border-[#D6E0F2] bg-white shadow-2xl transition-all duration-200 animate-in fade-in zoom-in-95`}
         >
           {/* Header */}
           <div className="flex items-center justify-between bg-navy px-4 py-3.5 text-white">
@@ -217,9 +297,14 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
                 <span className="absolute bottom-0 end-0 h-2.5 w-2.5 rounded-full border-2 border-navy bg-emerald-400" />
               </div>
               <div>
-                <h3 className="text-sm font-extrabold leading-tight">
-                  {t.title[lang]}
-                </h3>
+                <div className="flex items-center gap-1.5">
+                  <h3 className="text-sm font-extrabold leading-tight">
+                    {t.title[lang]}
+                  </h3>
+                  <span className="rounded-full bg-brand/30 px-1.5 py-0.2 text-[9px] font-medium text-[#CFDCF8]">
+                    AI
+                  </span>
+                </div>
                 <p className="text-[11px] text-[#A8BEE4]">
                   {t.subtitle[lang]}
                 </p>
@@ -286,18 +371,44 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
                   >
                     <p className="whitespace-pre-line text-xs font-normal">
                       {m.text}
+                      {/* Subtly animated streaming cursor if still streaming this message */}
+                      {isStreaming && m.id.startsWith('bot-') && !m.actionButton && !m.actionButtons && (
+                        <span className="inline-block ms-0.5 h-3.5 w-1 bg-brand animate-pulse align-middle" />
+                      )}
                     </p>
 
+                    {/* Single Action CTA Button */}
                     {m.actionButton && (
-                      <div className="mt-2.5 pt-1.5 border-t border-[#EDF3FC]">
+                      <div className="mt-2.5 pt-1.5 border-t border-[#EDF3FC] animate-in fade-in duration-300">
                         <Link
                           href={formatHref(m.actionButton.href)}
                           onClick={() => setIsOpen(false)}
-                          className="inline-flex items-center gap-1 rounded-md bg-brand px-3 py-1.5 text-[11px] font-bold text-white shadow-xs transition hover:opacity-90"
+                          className="inline-flex items-center gap-1 rounded-md bg-brand px-3 py-1.5 text-[11px] font-bold text-white shadow-xs transition hover:opacity-90 active:scale-95"
                         >
                           <span>{m.actionButton.label[lang]}</span>
                           <span aria-hidden>{arrow}</span>
                         </Link>
+                      </div>
+                    )}
+
+                    {/* Multiple Action CTA Buttons (Smart Fallback) */}
+                    {m.actionButtons && m.actionButtons.length > 0 && (
+                      <div className="mt-2.5 flex flex-wrap gap-1.5 pt-1.5 border-t border-[#EDF3FC] animate-in fade-in duration-300">
+                        {m.actionButtons.map((btn, idx) => (
+                          <Link
+                            key={btn.href}
+                            href={formatHref(btn.href)}
+                            onClick={() => setIsOpen(false)}
+                            className={`inline-flex items-center gap-1 rounded-md px-2.5 py-1.2 text-[11px] font-bold transition active:scale-95 ${
+                              idx === 0
+                                ? 'bg-brand text-white hover:opacity-90 shadow-xs'
+                                : 'border border-[#CBD9F2] bg-white text-navy hover:bg-[#EEF4FF] hover:border-brand'
+                            }`}
+                          >
+                            <span>{btn.label[lang]}</span>
+                            <span aria-hidden>{arrow}</span>
+                          </Link>
+                        ))}
                       </div>
                     )}
                   </div>
@@ -307,6 +418,21 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
                 </div>
               );
             })}
+
+            {/* Simulated Typing Indicator Bubble */}
+            {isTyping && (
+              <div className="flex flex-col items-start animate-in fade-in duration-200">
+                <div className="flex items-center gap-1.5 rounded-2xl rounded-tl-xs border border-[#E0EAF6] bg-white px-4 py-3 shadow-xs">
+                  <span className="h-2 w-2 animate-bounce rounded-full bg-brand [animation-delay:-0.3s]" />
+                  <span className="h-2 w-2 animate-bounce rounded-full bg-brand [animation-delay:-0.15s]" />
+                  <span className="h-2 w-2 animate-bounce rounded-full bg-brand" />
+                </div>
+                <span className="mt-1 px-1 text-[10px] text-[#8695B4]">
+                  {t.typing[lang]}
+                </span>
+              </div>
+            )}
+
             <div ref={messagesEndRef} />
           </div>
 
@@ -327,10 +453,11 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
                 <button
                   key={faq.id}
                   type="button"
+                  disabled={isBusy}
                   onClick={() => handleChipClick(faq)}
-                  className="shrink-0 rounded-full border border-[#CFDCF2] bg-white px-2.5 py-1 text-[11px] font-medium text-navy shadow-2xs transition-all hover:border-brand hover:bg-[#EEF4FF] hover:text-brand active:scale-95"
+                  className="shrink-0 rounded-full border border-[#CFDCF2] bg-white px-2.5 py-1 text-[11px] font-medium text-navy shadow-2xs transition-all hover:border-brand hover:bg-[#EEF4FF] hover:text-brand disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
                 >
-                  {faq.chipLabel[lang]}
+                  {faq.chipLabel ? faq.chipLabel[lang] : ''}
                 </button>
               ))}
             </div>
@@ -345,13 +472,14 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
               ref={inputRef}
               type="text"
               value={inputValue}
+              disabled={isBusy}
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder={t.inputPlaceholder[lang]}
-              className="flex-1 rounded-xl border border-[#D5E1F5] bg-[#F7F9FC] px-3 py-2 text-xs text-navy placeholder:text-[#9AA8C4] focus:border-brand focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand/25"
+              placeholder={isBusy ? t.typing[lang] : t.inputPlaceholder[lang]}
+              className="flex-1 rounded-xl border border-[#D5E1F5] bg-[#F7F9FC] px-3 py-2 text-xs text-navy placeholder:text-[#9AA8C4] focus:border-brand focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand/25 disabled:opacity-60"
             />
             <button
               type="submit"
-              disabled={!inputValue.trim()}
+              disabled={isBusy || !inputValue.trim()}
               aria-label={t.send[lang]}
               className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand text-white shadow-xs transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
             >

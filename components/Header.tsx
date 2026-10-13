@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { langs, nav, tagline, type Lang } from '@/lib/i18n';
@@ -35,11 +36,14 @@ export default function Header({ lang }: { lang: Lang }) {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
         {/* لوگو: همیشه سمت چپ */}
         <Link href={`/${lang}/`} className="flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-lg bg-brand">
-            <svg viewBox="0 0 24 24" className="h-5 w-5 fill-white" aria-hidden>
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </span>
+          <Image
+            src="/images/logo.png"
+            alt="VideoCheck Iran"
+            width={40}
+            height={40}
+            className="h-10 w-10 object-contain"
+            priority
+          />
           <span className="leading-tight">
             <span className="block text-lg font-extrabold">VideoCheck Iran</span>
             <span className="block text-[11px] text-[#9DB0D0]" dir={dir}>
@@ -58,11 +62,10 @@ export default function Header({ lang }: { lang: Lang }) {
                 <Link
                   key={n.slug}
                   href={href}
-                  className={`border-b-2 px-3 py-1.5 ${
-                    active
+                  className={`border-b-2 px-3 py-1.5 ${active
                       ? 'border-brand text-white'
                       : 'border-transparent text-[#C9D6F2] hover:text-white'
-                  }`}
+                    }`}
                 >
                   {n[lang]}
                 </Link>
@@ -92,9 +95,8 @@ export default function Header({ lang }: { lang: Lang }) {
                     <Link
                       href={`/${l}${rest}`}
                       onClick={() => setLangOpen(false)}
-                      className={`flex items-center justify-between px-4 py-2.5 text-sm hover:bg-[#E8EFFD] ${
-                        l === lang ? 'font-bold text-brand' : ''
-                      }`}
+                      className={`flex items-center justify-between px-4 py-2.5 text-sm hover:bg-[#E8EFFD] ${l === lang ? 'font-bold text-brand' : ''
+                        }`}
                     >
                       {langNames[l]}
                       {l === lang && <span aria-hidden>✔</span>}

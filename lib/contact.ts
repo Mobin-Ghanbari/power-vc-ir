@@ -26,7 +26,7 @@ export const contactPage = {
     email: { fa: 'ایمیل', en: 'Email' },
     emailPh: { fa: 'ایمیل خود را وارد کنید', en: 'Enter your email' },
     phone: {fa:'شماره تلفن', en: 'Phone number'},
-    phonePh: {fa:' شماره تلفن خود را وارد کنید', en: 'Enter your phone number'},
+    phonePh: { fa: 'شماره تلفن خود را وارد کنید', en: 'Enter your phone number' },
     subject: { fa: 'موضوع', en: 'Subject' },
     subjectPh: { fa: 'انتخاب موضوع', en: 'Select a subject' },
     message: { fa: 'پیام', en: 'Message' },

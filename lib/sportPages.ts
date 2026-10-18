@@ -33,7 +33,7 @@ export const sportPages: SportPage[] = [
       fa: 'سامانهٔ کامل بازبینی ویدئویی برای مسابقات والیبال.',
       en: 'A complete video review system for volleyball matches.',
     },
-    image: '/images/sports/volleyball-hero.jpg',
+    image: '/images/sports/volleyball.webp',
     specs: [
       { value: {fa:'۱۷ تا ۲۳', en:'17 to 23'}, label: { fa: 'دوربین باکیفیت', en: 'High-quality cameras' } },
       { value: num('۲۰۰', '200'), label: { fa: 'ضبط پرسرعت (فریم بر ثانیه)', en: 'High-speed capture (FPS)' } },
@@ -53,9 +53,9 @@ export const sportPages: SportPage[] = [
     ],
     packagesTitle: { fa: 'پکیج‌ها', en: 'Packages' },
     packages: [
-      { name: 'Super Pro', cameras: 23, diagram: '/images/sports/volleyball-1.jpg' },
-      { name: 'Pro', cameras: 17, diagram: '/images/sports/volleyball-1.jpg' },
-      { name: 'Economics', cameras: 13, diagram: '/images/sports/volleyball-1.jpg' },
+      { name: 'Super Pro', cameras: 23, diagram: '/images/sports/volleyball-1.webp' },
+      { name: 'Pro', cameras: 17, diagram: '/images/sports/volleyball-1.webp' },
+      { name: 'Economics', cameras: 13, diagram: '/images/sports/volleyball-1.webp' },
     ]
   },
   {
@@ -65,7 +65,7 @@ export const sportPages: SportPage[] = [
       fa: 'پوشش همهٔ زاویه‌ها، از جمله خط دروازه.',
       en: 'All angles covered, including the goal line.',
     },
-    image: '/images/sports/futsal-hero.jpg',
+    image: '/images/sports/futsal.webp',
     specs: commonSpecs({ fa: '۸ تا ۱۶', en: '8 to 16' }, { fa: '۶۰ تا ۲۰۰', en: '60 to 200' }),
     note: {
       fa: 'از دوربین‌های حرفه‌ای 3G-SDI استفاده می‌کنیم. همهٔ زاویه‌ها + خط دروازه.',
@@ -79,7 +79,7 @@ export const sportPages: SportPage[] = [
       fa: 'بازبینی فوری برای شوت‌ها، خط و زمان بازی.',
       en: 'Instant review for shots, lines and game clock.',
     },
-    image: '/images/sports/basketball-hero.jpg',
+    image: '/images/sports/basketball.webp',
     specs: commonSpecs({ fa: '۸ تا ۱۶', en: '8 to 16' }, { fa: '۶۰ تا ۲۰۰', en: '60 to 200' }),
     note: {
       fa: 'از دوربین‌های حرفه‌ای 3G-SDI استفاده می‌کنیم.',
@@ -87,20 +87,36 @@ export const sportPages: SportPage[] = [
     },
   },
   {
-  id: 'football',
-  title: { fa: 'سامانهٔ ویدئوچک فوتبال', en: 'Football Video Support System' },
-  subtitle: {
-    fa: 'بازبینی تصمیم‌های خط و محوطه با چند زاویهٔ دید.',
-    en: 'Review of line and area decisions from multiple angles.',
+    id: 'football',
+    title: { fa: 'سامانهٔ کمک‌داور ویدئویی فوتبال (VAR)', en: 'Football Video Assistant Referee (VAR)' },
+    subtitle: {
+      fa: 'سیستم استاندارد بازبینی صحنه‌های حساس، خط دروازه و خطوط آفساید سه‌بعدی.',
+      en: 'FIFA-standard review system for critical match incidents, goal line, and 3D offside lines.',
+    },
+    image: '/images/sports/football.webp',
+    specs: [
+      {
+        value: { fa: '۸ تا ۱۶', en: '8 to 16' },
+        label: { fa: 'دوربین‌های سرعت‌بالا و زاویه‌بسته', en: 'High-speed & tight-angle broadcast cameras' },
+      },
+      {
+        value: { fa: '۱۲۰ تا ۲۴۰', en: '120 to 240' },
+        label: { fa: 'نرخ فریم اسلوموشن (FPS)', en: 'Super slow-motion frame rate (FPS)' },
+      },
+      {
+        value: { fa: 'سه‌بعدی میلی‌متری', en: 'Sub-millimeter 3D' },
+        label: { fa: 'کالیبراسیون خط آفساید مجازی', en: 'Virtual offside line calibration' },
+      },
+      {
+        value: { fa: 'UHD / 4K SDI', en: 'UHD / 4K SDI' },
+        label: { fa: 'خروجی پخش همزمان و همگام‌ساز', en: 'Multi-angle synchronized broadcast feed' },
+      },
+    ],
+    note: {
+      fa: 'پشتیبانی کامل از اتاق VOR، مانیتور بازبینی داور کنار زمین (RRA) و ارتباط صوتی بلادرنگ.',
+      en: 'Full compliance with Video Operation Room (VOR), Referee Review Area (RRA), and real-time intercom.',
+    },
   },
-  image: '/images/sports/football-hero.jpg',
-  // اعداد نمونه‌اند؛ قبل از انتشار مقدار واقعی بگذارید
-  specs: commonSpecs({ fa: '—', en: '—' }, { fa: '—', en: '—' }),
-  note: {
-    fa: 'از دوربین‌های حرفه‌ای 3G-SDI استفاده می‌کنیم.',
-    en: 'We use professional 3G-SDI cameras.',
-  },
-},
 {
   id: 'other',
   title: { fa: 'سایر ورزش‌ها', en: 'Other sports' },
@@ -108,7 +124,7 @@ export const sportPages: SportPage[] = [
     fa: 'ورزش شما در فهرست نیست؟ دوربین‌ها و نرم‌افزار را با نیاز رشتهٔ شما تطبیق می‌دهیم.',
     en: 'Your sport is not listed? We adapt cameras and software to its needs.',
   },
-  image: '/images/sports/other-hero.jpg',
+  image: '/images/sports/other.webp',
   topList: {
     title: { fa: 'رشته‌هایی که پوشش می‌دهیم', en: 'Sports we cover' },
     items: otherSports.filter((o) => o.en !== 'and more'),

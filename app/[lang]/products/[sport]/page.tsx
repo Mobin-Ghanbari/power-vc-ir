@@ -19,6 +19,7 @@ type Props = { params: Promise<{ lang: string; sport: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, sport } = await params;
+  if (!langs.includes(lang as Lang)) return {};
   const s = sportPages.find((x) => x.id === sport);
   if (!s) return {};
   return pageMeta(lang as Lang, `products/${s.id}`, {
@@ -30,12 +31,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function SportPageView({ params }: Props) {
   const { lang: l, sport } = await params;
   const lang = l as Lang;
+  if (!langs.includes(lang)) notFound();
   const s = sportPages.find((x) => x.id === sport);
   if (!s) notFound();
 
   return (
     <>
-        <SportHero title={s.title[lang]} text={s.subtitle[lang]} image={`/images/sports/${s.id}.jpg`} />      <main className="mx-auto max-w-5xl space-y-10 px-5 py-12">
+      <SportHero title={s.title[lang]} text={s.subtitle[lang]} image={s.image || `/images/sports/${s.id}.webp`} />
+      <main className="mx-auto max-w-5xl space-y-10 px-5 py-12">
         <Link href={`/${lang}/products/`} className="text-sm font-bold text-brand">
           {lang === 'fa' ? '→' : '←'} {lang === 'fa' ? 'بازگشت به محصولات' : 'Back to products'}
         </Link>

@@ -7,11 +7,11 @@ export default function JsonLd() {
     '@type': 'Organization',
     name: SITE_NAME,
     url: SITE_URL,
-    logo: `${SITE_URL}/images/logo.png`,
+    logo: `${SITE_URL}/images/logo.webp`,
     email: c.email,
     telephone: c.phone,
     address: { '@type': 'PostalAddress', addressLocality: 'Tehran', addressCountry: 'IR' },
-    sameAs: Object.values(c.social),
+    sameAs: Object.values(c.social).filter((url) => Boolean(url && url.length > 20)),
   };
   return (
     <script

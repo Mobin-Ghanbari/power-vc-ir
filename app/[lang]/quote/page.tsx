@@ -14,7 +14,7 @@ export default async function Quote({ params }: { params: Promise<{ lang: string
   const lang = (await params).lang as Lang;
   return (
     <>
-      <PageBanner lang={lang} title={t.title[lang]} text={t.text[lang]} image="/images/banner-quote.jpg" />
+      <PageBanner lang={lang} title={t.title[lang]} text={t.text[lang]} image="/images/banner-quote.webp" />
       {/* ترتیب ثابت در هر دو زبان: فرم سمت چپ، اطلاعات سمت راست */}
       <main dir="ltr" className="mx-auto grid max-w-5xl items-start gap-6 px-5 py-12 md:grid-cols-[1.1fr_.9fr]">
         <div dir={lang === 'fa' ? 'rtl' : 'ltr'}><QuoteForm lang={lang} /></div>

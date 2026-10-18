@@ -13,7 +13,7 @@ export default async function Services({ params }: { params: Promise<{ lang: str
   const lang = (await params).lang as Lang;
   return (
     <>
-      <PageBanner lang={lang} title={t.title[lang]} text={t.text[lang]} image="/images/banner-services.jpg" />
+      <PageBanner lang={lang} title={t.title[lang]} text={t.text[lang]} image="/images/banner-services.webp" />
       <main className="px-5 py-12">
         <ServiceCards lang={lang} />
       </main>

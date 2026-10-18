@@ -15,15 +15,15 @@ export default async function About({ params }: { params: Promise<{ lang: string
   const lang = (await params).lang as Lang;
   return (
     <>
-      <PageBanner lang={lang} title={t.title[lang]} text={t.text[lang]} image="/images/banner-about.jpg" />
+      <PageBanner lang={lang} title={t.title[lang]} text={t.text[lang]} image="/images/banner-about.webp" />
 
       <main className="mx-auto max-w-6xl px-5 py-12">
         <section className="grid items-center gap-8 md:grid-cols-[.9fr_1.1fr]">
           <div
             className="aspect-[4/3] rounded-2xl bg-cover bg-center shadow-sm"
-            style={{ backgroundImage: 'url(/images/about.jpg), linear-gradient(160deg,#1b3a78,#0a1f44)' }}
+            style={{ backgroundImage: 'url(/images/about.webp), linear-gradient(160deg,#1b3a78,#0a1f44)' }}
             role="img"
-            aria-label=""
+            aria-label={lang === 'fa' ? 'تیم و تجهیزات تخصصی ویدئوچک ایران' : 'Video Challenge Iran team and technical equipment'}
           />
           <div>
             <h2 className="text-2xl font-extrabold text-navy md:text-3xl">{t.storyTitle[lang]}</h2>

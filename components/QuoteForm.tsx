@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { countries, quotePage as t } from '@/lib/quote';
 import type { Lang } from '@/lib/i18n';
 
@@ -16,23 +16,66 @@ function Label({ htmlFor, text, required }: { htmlFor: string; text: string; req
   );
 }
 
+function isValidPhone(phone: string): boolean {
+  const digits = phone.replace(/\D/g, '');
+  return digits.length >= 7 && digits.length <= 15 && /^[+]?[\d\s\-()]+$/.test(phone.trim());
+}
+
 export default function QuoteForm({ lang }: { lang: Lang }) {
   const f = t.fields;
-  const [type, setType] = useState('');
   const [state, setState] = useState<'idle' | 'sending' | 'ok' | 'err'>('idle');
+  const [phoneError, setPhoneError] = useState('');
 
-  useEffect(() => {
-    setType(new URLSearchParams(window.location.search).get('type') ?? '');
-  }, []);
+  const isSubmitting = state === 'sending';
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (isSubmitting) return;
+
     const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    // 1. Honeypot Anti-Spam Check
+    const honeypot = formData.get('website_hp');
+    if (honeypot) {
+      form.reset();
+      setState('ok');
+      return;
+    }
+
+    // 2. Trim string values & prepare data
+    const rawData = Object.fromEntries(formData.entries());
+    delete rawData.website_hp;
+    const trimmedData: Record<string, string> = {};
+    for (const [key, val] of Object.entries(rawData)) {
+      if (typeof val === 'string') {
+        trimmedData[key] = val.trim();
+      }
+    }
+
+    // 3. Client-side Phone Validation (if provided)
+    const phone = trimmedData.phone ?? '';
+    if (phone && !isValidPhone(phone)) {
+      setPhoneError(
+        lang === 'fa'
+          ? 'لطفاً یک شماره تلفن معتبر وارد کنید (حداقل ۷ تا ۱۵ رقم).'
+          : 'Please enter a valid phone number (7 to 15 digits).'
+      );
+      return;
+    }
+    setPhoneError('');
+
+    // Attach URL query type parameter if present
+    const serviceType = typeof window !== 'undefined'
+      ? new URLSearchParams(window.location.search).get('type') ?? ''
+      : '';
+
     const url = process.env.NEXT_PUBLIC_FORM_ENDPOINT;
     setState('sending');
+
     try {
       if (!url) throw new Error('NEXT_PUBLIC_FORM_ENDPOINT is not set');
-      const data = { ...Object.fromEntries(new FormData(form)), lang };
+      const data = { ...trimmedData, type: serviceType || trimmedData.type || '', form: 'quote', lang };
       const res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -49,7 +92,17 @@ export default function QuoteForm({ lang }: { lang: Lang }) {
 
   return (
     <form onSubmit={onSubmit} className="rounded-2xl border border-[#D6E0F2] bg-white p-6 shadow-sm">
-      <input type="hidden" name="type" value={type} />
+      {/* Honeypot field for bot detection */}
+      <div style={{ display: 'none' }} aria-hidden="true">
+        <label htmlFor="q-website-hp">Leave this field blank</label>
+        <input
+          id="q-website-hp"
+          type="text"
+          name="website_hp"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
 
       <Label htmlFor="name" text={f.name[lang]} required />
       <input id="name" name="name" required placeholder={f.namePh[lang]} className={input} />
@@ -58,7 +111,22 @@ export default function QuoteForm({ lang }: { lang: Lang }) {
       <input id="email" name="email" type="email" required dir="ltr" placeholder={f.emailPh[lang]} className={`${input} text-start`} />
 
       <Label htmlFor="phone" text={f.phone[lang]} />
-      <input id="phone" name="phone" type="tel" dir="ltr" placeholder={f.phonePh[lang]} className={`${input} text-start`} />
+      <input
+        id="phone"
+        name="phone"
+        type="tel"
+        dir="ltr"
+        placeholder={f.phonePh[lang]}
+        className={`${input} text-start ${phoneError ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : ''}`}
+        onChange={() => {
+          if (phoneError) setPhoneError('');
+        }}
+      />
+      {phoneError && (
+        <p className="mt-1 text-xs text-red-600" role="alert">
+          {phoneError}
+        </p>
+      )}
 
       <Label htmlFor="country" text={f.country[lang]} required />
       <select id="country" name="country" required defaultValue="" className={input}>
@@ -73,10 +141,39 @@ export default function QuoteForm({ lang }: { lang: Lang }) {
 
       <button
         type="submit"
-        disabled={state === 'sending'}
-        className="mt-6 w-full rounded-xl bg-brand py-3.5 text-lg font-bold text-white hover:opacity-90 disabled:opacity-60"
+        disabled={isSubmitting}
+        className={`mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-brand py-3.5 text-lg font-bold text-white shadow-sm transition hover:opacity-90 active:scale-98 ${
+          isSubmitting ? 'opacity-50 pointer-events-none cursor-not-allowed' : ''
+        }`}
       >
-        {state === 'sending' ? t.sending[lang] : t.send[lang]}
+        {isSubmitting ? (
+          <>
+            <svg
+              className="h-5 w-5 animate-spin text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+              />
+            </svg>
+            <span>{t.sending[lang]}</span>
+          </>
+        ) : (
+          <span>{t.send[lang]}</span>
+        )}
       </button>
 
       {state === 'ok' && <p role="status" className="mt-4 rounded-lg bg-[#E6F6EC] p-3 text-sm text-[#14532D]">{t.ok[lang]}</p>}

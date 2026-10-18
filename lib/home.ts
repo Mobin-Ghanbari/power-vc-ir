@@ -3,7 +3,7 @@ export const home = {
     title: { fa: 'تحلیل ویدئویی برای ارتقای عملکرد در ورزش‌ها', en: 'Video analysis to raise performance in sport' },
     text: {
       fa: 'سامانه ویدئوچک ایران با ارائه راهکارهای پیشرفتهٔ تحلیل ویدئویی به تیم‌ها و ورزشکاران در رشته‌های مختلف ورزشی کمک می‌کند تا عملکرد خود را به سطح بالاتری برسانند.',
-      en: 'VideoCheck Iran offers advanced video analysis that helps teams and athletes in many sports reach a higher level of performance.',
+      en: 'Video Challenge Iran offers advanced video analysis that helps teams and athletes in many sports reach a higher level of performance.',
     },
     cta: { fa: 'درخواست مشاوره', en: 'Request a consultation' },
   },
@@ -14,7 +14,7 @@ export const home = {
     { icon: 'target', fa: 'تخصص در ورزش‌های مختلف', en: 'Expertise across sports' },
   ],
   why: {
-    title: { fa: 'چرا VideoCheck Iran؟', en: 'Why VideoCheck Iran?' },
+    title: { fa: 'چرا Video Challenge Iran؟', en: 'Why Video Challenge Iran?' },
     text: {
       fa: 'با بهره‌گیری از فناوری‌های پیشرفته، تحلیل ویدئویی را به ابزاری کاربردی برای بهبود عملکرد تیم‌ها و ورزشکاران در سراسر جهان تبدیل کرده‌ایم.',
       en: 'Using advanced technology, we turn video analysis into a practical tool that improves the performance of teams and athletes worldwide.',

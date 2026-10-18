@@ -13,7 +13,7 @@ export default async function Products({ params }: { params: Promise<{ lang: str
   const lang = (await params).lang as Lang;
   return (
     <>
-      <PageBanner lang={lang} title={p.title[lang]} text={p.text[lang]} image="/images/banner-products.jpg" />
+      <PageBanner lang={lang} title={p.title[lang]} text={p.text[lang]} image="/images/banner-products.webp" />
       <main className="mx-auto max-w-6xl px-5 py-10">
         <SportCards lang={lang} />
       </main>

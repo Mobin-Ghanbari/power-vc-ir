@@ -14,7 +14,7 @@ export default async function Projects({ params }: { params: Promise<{ lang: str
   const lang = (await params).lang as Lang;
   return (
     <>
-      <PageBanner lang={lang} title={t.title[lang]} text={t.text[lang]} image="/images/banner-projects.jpg" />
+      <PageBanner lang={lang} title={t.title[lang]} text={t.text[lang]} image="/images/banner-projects.webp" />
       <main className="mx-auto max-w-6xl px-5 py-10">
         <WorldMap lang={lang} />
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

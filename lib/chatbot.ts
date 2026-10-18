@@ -38,7 +38,7 @@ export const FAQ_DATABASE: FAQItem[] = [
     ],
     answer: {
       fa: 'سلام و درود! خوش آمدید. من دستیار هوشمند سامانه ویدئوچک ایران هستم. در زمینه استانداردهای داوری ویدیویی، چیدمان دوربین‌ها (FIVB/VAR)، نرخ فریم (FPS) و شرایط خرید یا اجاره تجهیزات می‌توانم راهنماییتان کنم. مایلید درباره کدام موضوع صحبت کنیم؟',
-      en: 'Hello and welcome! I am the VideoCheck Iran virtual assistant. I can help answer your questions regarding video challenge & VAR standards, camera layouts (FIVB), high-speed frame rates, and equipment purchase or rental options. How may I assist you today?',
+      en: 'Hello and welcome! I am the Video Challenge Iran virtual assistant. I can help answer your questions regarding video challenge & VAR standards, camera layouts (FIVB), high-speed frame rates, and equipment purchase or rental options. How may I assist you today?',
     },
   },
   {
@@ -63,10 +63,10 @@ export const FAQ_DATABASE: FAQItem[] = [
     ],
     answer: {
       fa: 'من دستیار هوشمند و راهنمای تخصصی «ویدئوچک ایران» هستم. هدف من ارائه مشاوره سریع و پاسخ به پرسش‌های شما درباره فناوری‌های بازبینی ویدئویی ورزش، سامانه‌های VAR فوتبال، ویدئوچک والیبال و فوتسال، و راهنمایی جهت استعلام قیمت و دریافت پیش‌فاکتور است.',
-      en: 'I am the intelligent virtual assistant for VideoCheck Iran. My mission is to provide rapid technical guidance on our sports video review technologies, football VAR solutions, volleyball and futsal video check systems, and help you request customized quotes.',
+      en: 'I am the intelligent virtual assistant for Video Challenge Iran. My mission is to provide rapid technical guidance on our sports video review technologies, football VAR solutions, volleyball and futsal video check systems, and help you request customized quotes.',
     },
     actionButton: {
-      label: { fa: 'درباره ویدئوچک ایران', en: 'About VideoCheck Iran' },
+      label: { fa: 'درباره ویدئوچک ایران', en: 'About Video Challenge Iran' },
       href: '/about/',
     },
   },
@@ -280,11 +280,11 @@ export const FAQ_DATABASE: FAQItem[] = [
 ];
 
 export const chatbotTranslations = {
-  title: { fa: 'راهنمای هوشمند VideoCheck', en: 'VideoCheck Assistant' },
+  title: { fa: 'راهنمای هوشمند Video Challenge', en: 'Video Challenge Assistant' },
   subtitle: { fa: 'پاسخ فوری به سوالات متداول', en: 'Instant FAQ & System Guidance' },
   welcomeMessage: {
     fa: 'سلام! به راهنمای هوشمند ویدئوچک ایران خوش آمدید. 👋\nچگونه می‌توانم کمکتان کنم؟ می‌توانید سوال خود را در کادر زیر بنویسید یا یکی از موضوعات متداول را انتخاب نمایید:',
-    en: 'Hello! Welcome to the VideoCheck Iran assistant. 👋\nHow may I help you today? Feel free to ask a question below or pick one of our quick topics:',
+    en: 'Hello! Welcome to the Video Challenge Iran assistant. 👋\nHow may I help you today? Feel free to ask a question below or pick one of our quick topics:',
   },
   inputPlaceholder: {
     fa: 'سوال خود را بنویسید (مثلاً: تعداد دوربین‌ها، قیمت، FPS...)',

@@ -37,15 +37,15 @@ export default function Header({ lang }: { lang: Lang }) {
         {/* لوگو: همیشه سمت چپ */}
         <Link href={`/${lang}/`} className="flex items-center gap-3">
           <Image
-            src="/images/logo.png"
-            alt="VideoCheck Iran"
+            src="/images/logo.webp"
+            alt="Video Challenge Iran"
             width={40}
             height={40}
             className="h-10 w-10 object-contain"
             priority
           />
           <span className="leading-tight">
-            <span className="block text-lg font-extrabold">VideoCheck Iran</span>
+            <span className="block text-lg font-extrabold">Video Challenge Iran</span>
             <span className="block text-[11px] text-[#9DB0D0]" dir={dir}>
               {tagline[lang]}
             </span>

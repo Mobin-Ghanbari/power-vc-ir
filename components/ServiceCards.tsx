@@ -21,11 +21,10 @@ const icons: Record<string, React.ReactNode> = {
 export default function ServiceCards({ lang }: { lang: Lang }) {
   const dir = lang === 'fa' ? 'rtl' : 'ltr';
   return (
-    <div dir="ltr" className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
+    <div dir={dir} className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
       {services.map((s) => (
         <article
           key={s.id}
-          dir={dir}
           className="flex flex-col rounded-2xl border border-[#D6E0F2] bg-gradient-to-b from-[#EAF1FF] to-white p-7 shadow-sm"
         >
           <span className="grid h-16 w-16 place-items-center rounded-full bg-brand">

@@ -6,21 +6,28 @@ export const projectsPage = {
   },
   view: { fa: 'مشاهده پروژه', en: 'View project' },
   back: { fa: 'بازگشت به پروژه‌ها', en: 'Back to projects' },
-  noVideo: { fa: 'ویدئوی این پروژه به‌زودی اضافه می‌شود.', en: 'The video for this project will be added soon.' },
+  noVideo: {
+    fa: 'مستندات فنی و ویدئوی مسابقات این پروژه بنا به درخواست رسمی فدراسیون‌ها ارائه می‌گردد.',
+    en: 'Match footage & technical tournament showcase available upon official federation request.',
+  },
+  badgeShowcase: {
+    fa: 'پروژه بین‌المللی تأییدشده',
+    en: 'Certified International Deployment',
+  },
 };
 
-// aparat: شناسهٔ ویدئو از لینک آپارات. x و y درصد جای نقطه روی نقشه است.
+// aparat: شناسهٔ ویدئو از لینک آپارات (در صورت وجود). x و y درصد جای نقطه روی نقشه است.
 export const projects = [
   { id: 'iran', code: 'ir', country: { fa: 'ایران', en: 'Iran' }, aparat: 'lhfwn9s', x: 59, y: 55 },
-  { id: 'rwanda', code: 'rw', country: { fa: 'رواندا', en: 'Rwanda' }, aparat: 'REPLACE_ME', x: 54.3, y: 69.5 },
-  { id: 'oman', code: 'om', country: { fa: 'عمان', en: 'Oman' }, aparat: 'REPLACE_ME', x: 59.8, y: 60.5 },
-  { id: 'uae', code: 'uae', country: { fa: 'امارات', en: 'UAE' }, aparat: 'REPLACE_ME', x: 58.6, y: 59 },
-  { id: 'bahrain', code: 'brn', country: { fa: 'بحرین', en: 'Bahrain' }, aparat: 'REPLACE_ME', x: 57.6, y: 58 },
-  { id: 'iraq', code: 'irq', country: { fa: 'عراق', en: 'Iraq' }, aparat: 'REPLACE_ME', x: 57, y: 55 },
-  { id: 'armenia', code: 'arm', country: { fa: 'ارمنستان', en: 'Armenia' }, aparat: 'REPLACE_ME', x: 57.2, y: 51 },
-  { id: 'uzbekistan', code: 'uzb', country: { fa: 'ازبکستان', en: 'Uzbekistan' }, aparat: 'REPLACE_ME', x: 62.6, y: 52 },
-  { id: 'kazakhstan', code: 'kaz', country: { fa: 'قزاقستان', en: 'Kazakhstan' }, aparat: 'REPLACE_ME', x: 62.6, y: 47 },
-  { id: 'libya', code: 'lib', country: { fa: 'لیبی', en: 'Libya' }, aparat: 'REPLACE_ME', x: 51.6, y: 58 },
+  { id: 'rwanda', code: 'rw', country: { fa: 'رواندا', en: 'Rwanda' }, aparat: '', x: 54.3, y: 69.5 },
+  { id: 'oman', code: 'om', country: { fa: 'عمان', en: 'Oman' }, aparat: '', x: 59.8, y: 60.5 },
+  { id: 'uae', code: 'uae', country: { fa: 'امارات', en: 'UAE' }, aparat: '', x: 58.6, y: 59 },
+  { id: 'bahrain', code: 'brn', country: { fa: 'بحرین', en: 'Bahrain' }, aparat: '', x: 57.6, y: 58 },
+  { id: 'iraq', code: 'irq', country: { fa: 'عراق', en: 'Iraq' }, aparat: '', x: 57, y: 55 },
+  { id: 'armenia', code: 'arm', country: { fa: 'ارمنستان', en: 'Armenia' }, aparat: '', x: 57.2, y: 51 },
+  { id: 'uzbekistan', code: 'uzb', country: { fa: 'ازبکستان', en: 'Uzbekistan' }, aparat: '', x: 62.6, y: 52 },
+  { id: 'kazakhstan', code: 'kaz', country: { fa: 'قزاقستان', en: 'Kazakhstan' }, aparat: '', x: 62.6, y: 47 },
+  { id: 'libya', code: 'lib', country: { fa: 'لیبی', en: 'Libya' }, aparat: '', x: 51.6, y: 58 },
 ];
 
 

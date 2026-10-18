@@ -27,14 +27,26 @@ interface Message {
 export default function ChatWidget({ lang }: { lang: Lang }) {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  const [messages, setMessages] = useState<Message[]>([]);
+  const msgIdCounter = useRef(1);
+  const nextMsgId = (prefix: string) => `${prefix}-${msgIdCounter.current++}`;
+
+  const [messages, setMessages] = useState<Message[]>(() => [
+    {
+      id: 'welcome',
+      sender: 'bot',
+      text: t.welcomeMessage[lang],
+      timestamp: '',
+    },
+  ]);
   const [isTyping, setIsTyping] = useState(false);
   const [isStreaming, setIsStreaming] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const typingTimerRef = useRef<NodeJS.Timeout | null>(null);
   const streamIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [prevLang, setPrevLang] = useState(lang);
 
   const chips = getQuickChips();
   const dir = lang === 'fa' ? 'rtl' : 'ltr';
@@ -51,35 +63,43 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
     }
   };
 
-  // Initialize welcome message
-  const initChat = () => {
+  // Synchronize welcome message when lang changes during render
+  if (prevLang !== lang) {
+    setPrevLang(lang);
+    setMessages([
+      {
+        id: 'welcome',
+        sender: 'bot',
+        text: t.welcomeMessage[lang],
+        timestamp: '',
+      },
+    ]);
+  }
+
+  const handleResetChat = () => {
     clearAllTimers();
     setIsTyping(false);
     setIsStreaming(false);
-
-    const welcome: Message = {
-      id: 'welcome',
-      sender: 'bot',
-      text: t.welcomeMessage[lang],
-      timestamp: new Date().toLocaleTimeString(lang === 'fa' ? 'fa-IR' : 'en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-      }),
-    };
-    setMessages([welcome]);
+    setMessages([
+      {
+        id: 'welcome',
+        sender: 'bot',
+        text: t.welcomeMessage[lang],
+        timestamp: '',
+      },
+    ]);
   };
 
   useEffect(() => {
-    initChat();
     return () => clearAllTimers();
-  }, [lang]);
+  }, []);
 
-  // Scroll to bottom whenever messages or typing state changes
+  // Scroll to bottom exclusively when opening, when typing state changes, or when messages finish streaming
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && !isStreaming) {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [messages, isTyping, isOpen]);
+  }, [messages.length, isTyping, isOpen, isStreaming]);
 
   // Focus input when chat window is opened
   useEffect(() => {
@@ -113,7 +133,7 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
     typingTimerRef.current = setTimeout(() => {
       setIsTyping(false);
 
-      const botMessageId = `bot-${Date.now()}`;
+      const botMessageId = nextMsgId('bot');
       const now = new Date().toLocaleTimeString(lang === 'fa' ? 'fa-IR' : 'en-US', {
         hour: '2-digit',
         minute: '2-digit',
@@ -153,6 +173,10 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
             )
           );
           setIsStreaming(false);
+          // Smooth scroll to reveal action buttons once streaming completes
+          requestAnimationFrame(() => {
+            messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+          });
           setTimeout(() => inputRef.current?.focus(), 100);
         } else {
           const currentSlice = fullText.slice(0, currentIndex);
@@ -161,6 +185,10 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
               msg.id === botMessageId ? { ...msg, text: currentSlice } : msg
             )
           );
+          // Direct instant container scroll during streaming tick (prevents smooth scroll animation queue thrashing)
+          if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+          }
         }
       }, 18);
     }, 650);
@@ -175,7 +203,7 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
     });
 
     const userMsg: Message = {
-      id: `user-${Date.now()}`,
+      id: nextMsgId('user'),
       sender: 'user',
       text: faq.chipLabel ? faq.chipLabel[lang] : faq.answer[lang],
       timestamp: now,
@@ -196,7 +224,7 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
     });
 
     const userMsg: Message = {
-      id: `user-${Date.now()}`,
+      id: nextMsgId('user'),
       sender: 'user',
       text: query,
       timestamp: now,
@@ -314,7 +342,7 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
             <div className="flex items-center gap-1">
               <button
                 type="button"
-                onClick={initChat}
+                onClick={handleResetChat}
                 title={t.resetChat[lang]}
                 aria-label={t.resetChat[lang]}
                 className="rounded-lg p-1.5 text-[#C9D6F2] hover:bg-white/10 hover:text-white"
@@ -352,7 +380,10 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
           </div>
 
           {/* Messages Container */}
-          <div className="flex-1 space-y-3 overflow-y-auto bg-[#F4F7FC] p-4 text-xs leading-relaxed">
+          <div
+            ref={chatContainerRef}
+            className="flex-1 space-y-3 overflow-y-auto bg-[#F4F7FC] p-4 text-xs leading-relaxed"
+          >
             {messages.map((m) => {
               const isBot = m.sender === 'bot';
               return (

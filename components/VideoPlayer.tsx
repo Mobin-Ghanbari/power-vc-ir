@@ -5,6 +5,10 @@ import { useState } from 'react';
 export default function VideoPlayer({ hash, title }: { hash: string; title: string }) {
   const [loaded, setLoaded] = useState(false);
 
+  if (!hash || !hash.trim()) {
+    return null;
+  }
+
   return (
     <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-gradient-to-br from-[#1b3a78] to-navy">
       {!loaded && (

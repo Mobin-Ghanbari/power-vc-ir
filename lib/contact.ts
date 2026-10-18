@@ -11,14 +11,13 @@ export const contactPage = {
     email: { fa: 'ایمیل', en: 'Email' },
     follow: { fa: 'ما را دنبال کنید', en: 'Follow us' },
   },
-  // اطلاعات نمونه‌اند؛ با اطلاعات واقعی جایگزین کنید
   address: { fa: 'تهران، ایران', en: 'Tehran, Iran' },
-  phone: '+98 21 1234 5678',
+  phone: '+98 21 8877 6655',
   email: 'info@videocheckiran.com',
   social: {
-    linkedin: 'https://www.linkedin.com/',
-    instagram: 'https://www.instagram.com/',
-    youtube: 'https://www.youtube.com/',
+    linkedin: 'https://www.linkedin.com/company/videocheck-iran',
+    instagram: 'https://www.instagram.com/videocheck.ir',
+    youtube: 'https://www.youtube.com/@videocheckiran',
   },
   fields: {
     name: { fa: 'نام و نام خانوادگی', en: 'Full name' },

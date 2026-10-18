@@ -2,7 +2,7 @@ export const productsPage = {
   title: { fa: 'محصولات ما', en: 'Our products' },
   text: {
     fa: 'راهکارهای ویدئوچک ایران برای رشته‌های مختلف ورزشی ارائه می‌شود. با انتخاب هر رشته، اطلاعات بیشتر را مشاهده کنید.',
-    en: 'VideoCheck Iran solutions are available for many sports. Select a sport to see more details.',
+    en: 'Video Challenge Iran solutions are available for many sports. Select a sport to see more details.',
   },
   more: { fa: 'اطلاعات بیشتر', en: 'More info' },
   quote: { fa: 'درخواست استعلام', en: 'Request a quote' },
@@ -58,11 +58,11 @@ export const sports = [
 ];
 
 export const otherSports = [
-  { fa: 'هندبال', en: 'Handball' },
-  { fa: 'تنیس', en: 'Tennis' },
-  { fa: 'اسنوکر', en: 'Snooker' },
-  { fa: 'دومیدانی و میدانی', en: 'Athletics' },
-  { fa: 'تکواندو', en: 'Taekwondo' },
-  { fa: 'سوارکاری', en: 'Equestrian' },
-  { fa: 'و ...', en: 'and more' },
+  { id: 'handball', fa: 'هندبال', en: 'Handball' },
+  { id: 'tennis', fa: 'تنیس', en: 'Tennis' },
+  { id: 'snooker', fa: 'اسنوکر', en: 'Snooker' },
+  { id: 'athletics', fa: 'دومیدانی و میدانی', en: 'Athletics' },
+  { id: 'taekwondo', fa: 'تکواندو', en: 'Taekwondo' },
+  { id: 'equestrian', fa: 'سوارکاری', en: 'Equestrian' },
+  { id: 'more', fa: 'و ...', en: 'and more' },
 ];

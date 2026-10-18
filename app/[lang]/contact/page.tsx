@@ -15,7 +15,7 @@ export default async function Contact({ params }: { params: Promise<{ lang: stri
   const dir = lang === 'fa' ? 'rtl' : 'ltr';
   return (
     <>
-      <PageBanner lang={lang} title={t.title[lang]} text={t.text[lang]} image="/images/banner-contact.jpg" />
+      <PageBanner lang={lang} title={t.title[lang]} text={t.text[lang]} image="/images/banner-contact.webp" />
       {/* ترتیب ثابت: اطلاعات سمت چپ، فرم سمت راست */}
       <main dir="ltr" className="mx-auto grid max-w-5xl items-start gap-6 px-5 py-12 md:grid-cols-[.8fr_1.2fr]">
         <div dir={dir}><ContactInfo lang={lang} /></div>

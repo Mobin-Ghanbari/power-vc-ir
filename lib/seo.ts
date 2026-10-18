@@ -1,21 +1,21 @@
 import type { Metadata } from 'next';
 import { langs, type Lang } from './i18n';
 
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000').replace(/\/$/, '');
-export const SITE_NAME = 'VideoCheck Iran';
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://videocheckiran.com').replace(/\/$/, '');
+export const SITE_NAME = 'Video Challenge Iran';
 
 export const pathOf = (lang: Lang, slug = '') => `/${lang}/${slug ? slug + '/' : ''}`;
 
 type Bi = { fa: string; en: string };
 type Meta = { title: Bi; description: Bi };
 
-// عنوان‌ها کوتاه‌اند؛ «| VideoCheck Iran» خودکار به انتها اضافه می‌شود
+// عنوان‌ها کوتاه‌اند؛ «| Video Challenge Iran» خودکار به انتها اضافه می‌شود
 export const pages: Record<string, Meta> = {
   '': {
-    title: { fa: 'ویدئوچک ایران | سامانه ویدئو چک والیبال', en: 'VideoCheck Iran | Volleyball video challenge system' },
+    title: { fa: 'ویدئوچک ایران | سامانه ویدئو چک والیبال', en: 'Video Challenge Iran | Volleyball Video Challenge & VAR' },
     description: {
       fa: 'سامانهٔ ویدئوچک ایران برای والیبال، فوتبال، فوتسال، بسکتبال و سایر ورزش‌ها؛ اجاره یا خرید با پشتیبانی فنی.',
-      en: 'VideoCheck Iran provides video challenge systems for volleyball, football, futsal, basketball and more. Rent or buy with technical support.',
+      en: 'Video Challenge Iran provides video challenge systems for volleyball, football, futsal, basketball and more. Rent or buy with technical support.',
     },
   },
   products: {
@@ -50,14 +50,14 @@ export const pages: Record<string, Meta> = {
     title: { fa: 'درباره ما', en: 'About us' },
     description: {
       fa: 'با تیم و داستان ویدئوچک ایران آشنا شوید؛ پیشگام در تحلیل ویدئویی ورزش.',
-      en: 'Meet the VideoCheck Iran team and story, a pioneer in sports video analysis.',
+      en: 'Meet the Video Challenge Iran team and story, a pioneer in sports video analysis.',
     },
   },
   contact: {
     title: { fa: 'تماس با ما', en: 'Contact us' },
     description: {
       fa: 'با ویدئوچک ایران تماس بگیرید؛ آدرس، تلفن، ایمیل و فرم ارتباط.',
-      en: 'Contact VideoCheck Iran: address, phone, email and contact form.',
+      en: 'Contact Video Challenge Iran: address, phone, email and contact form.',
     },
   },
 };
@@ -68,6 +68,7 @@ export function pageMeta(lang: Lang, slug: string, override?: Meta): Metadata {
   const description = m.description[lang];
   const languages: Record<string, string> = Object.fromEntries(langs.map((l) => [l, pathOf(l, slug)]));
   languages['x-default'] = pathOf('fa', slug);
+  const ogImageUrl = `${SITE_URL}/images/og.webp`;
 
   return {
     title: slug === '' ? { absolute: title } : title,
@@ -80,8 +81,20 @@ export function pageMeta(lang: Lang, slug: string, override?: Meta): Metadata {
       siteName: SITE_NAME,
       type: 'website',
       locale: lang === 'fa' ? 'fa_IR' : 'en_US',
-      images: ['/images/og.jpg'],
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
     },
-    twitter: { card: 'summary_large_image', title, description, images: ['/images/og.jpg'] },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImageUrl],
+    },
   };
 }

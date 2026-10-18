@@ -14,13 +14,16 @@ export default function WorldMap({ lang }: { lang: Lang }) {
           key={p.id}
           href={`/${lang}/projects/${p.id.trim()}/`}
           aria-label={p.country[lang]}
-          className="group absolute -translate-x-1/2 -translate-y-1/2 hover:z-20 focus-visible:z-20"
+          className="group absolute -translate-x-1/2 -translate-y-1/2 p-3 -m-3 hover:z-20 focus-visible:z-20 touch-manipulation"
           style={{ left: `${p.x}%`, top: `${p.y}%` }}
         >
-          {/* نقطه */}
-          <span className="block h-2 w-2 rounded-full border  bg-brand shadow transition-transform group-hover:scale-150 group-focus-visible:scale-150 sm:h-2 sm:w-2" />
-          {/* نام کشور */}
-          <span className="pointer-events-none absolute bottom-full left-1/2 mb-1 -translate-x-1/2 whitespace-nowrap rounded bg-navy px-2 py-0.5 text-[11px] text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+          {/* Visual dot with ping effect */}
+          <span className="relative flex h-2.5 w-2.5 items-center justify-center sm:h-3 sm:w-3">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand/50 opacity-0 group-hover:opacity-75 group-focus-visible:opacity-75" />
+            <span className="relative block h-2 w-2 rounded-full border border-white bg-brand shadow-sm transition-transform group-hover:scale-125 group-focus-visible:scale-125 sm:h-2.5 sm:w-2.5" />
+          </span>
+          {/* Tooltip نام کشور */}
+          <span className="pointer-events-none absolute bottom-full left-1/2 mb-1.5 -translate-x-1/2 whitespace-nowrap rounded-md bg-navy px-2 py-0.5 text-[11px] font-bold text-white shadow-md opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
             {p.country[lang]}
           </span>
         </Link>

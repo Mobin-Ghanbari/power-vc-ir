@@ -15,9 +15,9 @@ export default function WhyUs({ lang }: { lang: Lang }) {
       </div>
       <div
         className="min-h-64 rounded-2xl bg-[#E8EFFD] bg-cover bg-center"
-        style={{ backgroundImage: 'url(/images/why.jpg)' }}
+        style={{ backgroundImage: 'url(/images/why.webp)' }}
         role="img"
-        aria-label=""
+        aria-label={lang === 'fa' ? 'فناوری ویدئوچک و بازبینی صحنه‌ها' : 'Sports video review and camera technology'}
       />
     </section>
   );

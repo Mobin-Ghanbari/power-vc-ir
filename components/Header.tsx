@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { langs, nav, tagline, type Lang } from '@/lib/i18n';
+import { langs, nav, type Lang } from '@/lib/i18n';
 
 const langNames: Record<Lang, string> = { fa: 'فارسی', en: 'English' };
 
@@ -38,18 +38,13 @@ export default function Header({ lang }: { lang: Lang }) {
         <Link href={`/${lang}/`} className="flex items-center gap-3">
           <Image
             src="/images/logo.webp"
-            alt="Video Challenge Iran"
+            alt="Power VC"
             width={40}
             height={40}
             className="h-10 w-10 object-contain"
             priority
           />
-          <span className="leading-tight">
-            <span className="block text-lg font-extrabold">Video Challenge Iran</span>
-            <span className="block text-[11px] text-[#9DB0D0]" dir={dir}>
-              {tagline[lang]}
-            </span>
-          </span>
+          <span className="text-xl font-extrabold tracking-tight text-white">Power VC</span>
         </Link>
 
         <div className="flex items-center gap-3">

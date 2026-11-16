@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "export:zip": "node scripts/export-zip.mjs",
+    "deploy:prep": "npm run export:zip"
   },
   "dependencies": {
     "next": "16.3.7",

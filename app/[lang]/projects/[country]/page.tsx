@@ -65,7 +65,7 @@ export default async function Country({ params }: Props) {
             </div>
 
             <h3 className="mt-4 max-w-lg text-lg font-extrabold text-white sm:text-xl">
-              {lang === 'fa' ? `سامانه ویدئوچک مسابقات رسمی ${p.country.fa}` : `${p.country.en} Official Match Video Challenge System`}
+              {lang === 'fa' ? `سیستم ویدئوچک مسابقات رسمی ${p.country.fa}` : `${p.country.en} Official Match Video Challenge System`}
             </h3>
 
             <p className="mt-3 max-w-md text-xs leading-6 text-[#A3B8DE] sm:text-sm">

@@ -13,12 +13,12 @@ export const notFoundData = {
     en: 'Requested Frame Not Found in Archive',
   },
   description: {
-    fa: 'صفحه‌ای که به دنبال آن هستید در سامانه ویدئوچک موجود نیست یا نشانی آن تغییر کرده است. می‌توانید از طریق پیوندهای زیر به بخش‌های مختلف دسترسی پیدا کنید.',
+    fa: 'صفحه‌ای که به دنبال آن هستید در سیستم ویدئوچک موجود نیست یا نشانی آن تغییر کرده است. می‌توانید از طریق پیوندهای زیر به بخش‌های مختلف دسترسی پیدا کنید.',
     en: 'The page or camera feed you are searching for is not available in our system or has been relocated. You can navigate back using the quick links below.',
   },
   actions: {
     home: { fa: 'بازگشت به صفحه اصلی', en: 'Return to Home' },
-    products: { fa: 'مشاهده سامانه‌ها و تجهیزات', en: 'View Sports Systems' },
+    products: { fa: 'مشاهده سیستم‌ها و تجهیزات', en: 'View Sports Systems' },
     contact: { fa: 'تماس با پشتیبانی', en: 'Contact Support' },
   },
 };

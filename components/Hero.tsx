@@ -16,7 +16,7 @@ export default function Hero({ lang }: { lang: Lang }) {
         <div className="max-w-xl">
           <h1 className="text-4xl font-extrabold leading-snug md:text-6xl md:leading-tight">{h.title[lang]}</h1>
           <p className="mt-6 text-base leading-8 text-[#D5E0F7] md:text-lg">{h.text[lang]}</p>
-          <Link href={`/${lang}/quote/`} className="mt-8 inline-block rounded-lg bg-brand px-8 py-3.5 text-lg font-bold hover:opacity-90">
+          <Link href={`/${lang}/contact/`} className="mt-8 inline-block rounded-lg bg-brand px-8 py-3.5 text-lg font-bold hover:opacity-90">
             {h.cta[lang]}
           </Link>
         </div>

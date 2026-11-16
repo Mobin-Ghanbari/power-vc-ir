@@ -238,12 +238,11 @@ export default function ChatWidget({ lang }: { lang: Lang }) {
     if (match) {
       triggerBotResponse(match.answer[lang], match.actionButton);
     } else {
-      // Smart Fallback providing both Quote and Contact buttons
+      // Smart Fallback providing Contact button
       triggerBotResponse(
         t.fallbackMessage[lang],
         undefined,
         [
-          { label: t.fallbackCtaQuote, href: '/quote/' },
           { label: t.fallbackCtaContact, href: '/contact/' },
         ]
       );

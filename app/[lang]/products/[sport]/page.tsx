@@ -58,8 +58,8 @@ export default async function SportPageView({ params }: Props) {
         )}
 
         <div className="rounded-2xl bg-navy p-6 text-center text-white">
-          <Link href={`/${lang}/quote/`} className="inline-block rounded-lg bg-brand px-8 py-3 font-bold hover:opacity-90">
-            {lang === 'fa' ? 'درخواست استعلام قیمت' : 'Request a quote'}
+          <Link href={`/${lang}/contact/`} className="inline-block rounded-lg bg-brand px-8 py-3 font-bold hover:opacity-90">
+            {lang === 'fa' ? 'تماس با ما و استعلام' : 'Contact Us & Inquire'}
           </Link>
         </div>
       </main>

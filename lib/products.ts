@@ -13,7 +13,7 @@ export const sports = [
   {
     id: 'volleyball',
     name: { fa: 'والیبال', en: 'Volleyball' },
-    short: { fa: 'تحلیل تکنیکی و عملکرد بازیکنان در والیبال', en: 'Technical and player performance analysis in volleyball' },
+    short: { fa: 'بازبینی تصاویر و ویدئوچک تخصصی والیبال بر اساس قوانین FIVB', en: 'Official FIVB video challenge and review for volleyball' },
     long: {
       fa: 'محصول اصلی ما. دوربین‌های اطراف زمین توپ، خطوط و تماس با تور را دنبال می‌کنند و داور در چند ثانیه بازپخش دقیق را می‌بیند. برای مسابقات رسمی و تمرین تیم‌ها مناسب است.',
       en: 'Our core product. Cameras around the court track the ball, lines and net contact, and the referee sees an accurate replay within seconds. Suitable for official matches and team training.',
@@ -22,7 +22,7 @@ export const sports = [
   {
     id: 'football',
     name: { fa: 'فوتبال', en: 'Football' },
-    short: { fa: 'بهبود عملکرد تیم‌ها با تحلیل ویدئویی دقیق', en: 'Better team performance through precise video analysis' },
+    short: { fa: 'سیستم داوری ویدئویی (VAR) و بازبینی صحنه‌های حساس فوتبال', en: 'Video Assistant Referee (VAR) and incident review for football' },
     long: {
       fa: 'بازبینی تصمیم‌های مربوط به خط و محوطه با چند زاویهٔ دید و تحلیل حرکت بازیکنان برای مربیان.',
       en: 'Review of line and area decisions from several angles, with player movement analysis for coaches.',
@@ -31,7 +31,7 @@ export const sports = [
   {
     id: 'futsal',
     name: { fa: 'فوتسال', en: 'Futsal' },
-    short: { fa: 'تحلیل تخصصی بازی‌های فوتسال', en: 'Specialized analysis for futsal matches' },
+    short: { fa: 'ویدئو ساپورت و بازبینی سریع خطوط و خطاهای فوتسال', en: 'Video support and instant review for futsal matches' },
     long: {
       fa: 'بازبینی سریع خطاها و توپ‌های خارج از زمین در زمینی کوچک و پرسرعت.',
       en: 'Fast review of fouls and ball-out calls on a small, high-speed court.',
@@ -40,7 +40,7 @@ export const sports = [
   {
     id: 'basketball',
     name: { fa: 'بسکتبال', en: 'Basketball' },
-    short: { fa: 'تحلیل بازی و عملکرد در بسکتبال', en: 'Game and performance analysis in basketball' },
+    short: { fa: 'بازبینی فوری صحنه‌ها و خطاهای بسکتبال (Instant Review)', en: 'Instant Review System for basketball fouls and clock decisions' },
     long: {
       fa: 'بازپخش شوت‌های لحظهٔ آخر، برخورد با خط و موارد مربوط به زمان بازی.',
       en: 'Replay for last-second shots, out-of-bounds and game-clock situations.',

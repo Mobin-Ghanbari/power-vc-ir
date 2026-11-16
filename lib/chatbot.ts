@@ -37,7 +37,7 @@ export const FAQ_DATABASE: FAQItem[] = [
       'hola',
     ],
     answer: {
-      fa: 'سلام و درود! خوش آمدید. من دستیار هوشمند سامانه ویدئوچک ایران هستم. در زمینه استانداردهای داوری ویدیویی، چیدمان دوربین‌ها (FIVB/VAR)، نرخ فریم (FPS) و شرایط خرید یا اجاره تجهیزات می‌توانم راهنماییتان کنم. مایلید درباره کدام موضوع صحبت کنیم؟',
+      fa: 'سلام و درود! خوش آمدید. من دستیار هوشمند سیستم ویدئوچک ایران هستم. در زمینه استانداردهای داوری ویدیویی، چیدمان دوربین‌ها (FIVB/VAR)، نرخ فریم (FPS) و شرایط خرید یا اجاره تجهیزات می‌توانم راهنماییتان کنم. مایلید درباره کدام موضوع صحبت کنیم؟',
       en: 'Hello and welcome! I am the Video Challenge Iran virtual assistant. I can help answer your questions regarding video challenge & VAR standards, camera layouts (FIVB), high-speed frame rates, and equipment purchase or rental options. How may I assist you today?',
     },
   },
@@ -62,7 +62,7 @@ export const FAQ_DATABASE: FAQItem[] = [
       'are you an ai',
     ],
     answer: {
-      fa: 'من دستیار هوشمند و راهنمای تخصصی «ویدئوچک ایران» هستم. هدف من ارائه مشاوره سریع و پاسخ به پرسش‌های شما درباره فناوری‌های بازبینی ویدئویی ورزش، سامانه‌های VAR فوتبال، ویدئوچک والیبال و فوتسال، و راهنمایی جهت استعلام قیمت و دریافت پیش‌فاکتور است.',
+      fa: 'من دستیار هوشمند و راهنمای تخصصی «ویدئوچک ایران» هستم. هدف من ارائه مشاوره سریع و پاسخ به پرسش‌های شما درباره فناوری‌های بازبینی ویدئویی ورزش، سیستم‌های VAR فوتبال، ویدئوچک والیبال و فوتسال، و راهنمایی جهت استعلام قیمت و دریافت پیش‌فاکتور است.',
       en: 'I am the intelligent virtual assistant for Video Challenge Iran. My mission is to provide rapid technical guidance on our sports video review technologies, football VAR solutions, volleyball and futsal video check systems, and help you request customized quotes.',
     },
     actionButton: {
@@ -173,7 +173,7 @@ export const FAQ_DATABASE: FAQItem[] = [
       en: 'Volleyball camera count (FIVB)',
     },
     answer: {
-      fa: 'سامانه ویدئوچک والیبال ما کاملاً منطبق با استانداردهای فدراسیون جهانی والیبال (FIVB) پیاده‌سازی شده و بسته به سطح مسابقات بین ۱۳ تا ۲۳ دوربین پرسرعت همگام‌سازی شده ارائه می‌دهد:\n\n• پکیج Super Pro: ۲۳ دوربین (کامل‌ترین پوشش خطوط، تور و آنتن)\n• پکیج Pro: ۱۷ دوربین (استاندارد لیگ برتر و مسابقات بین‌المللی)\n• پکیج Economics: ۱۳ دوربین (پوشش اقتصادی برای سالن‌ها و تمرینات)',
+      fa: 'سیستم ویدئوچک والیبال ما کاملاً منطبق با استانداردهای فدراسیون جهانی والیبال (FIVB) پیاده‌سازی شده و بسته به سطح مسابقات بین ۱۳ تا ۲۳ دوربین پرسرعت همگام‌سازی شده ارائه می‌دهد:\n\n• پکیج Super Pro: ۲۳ دوربین (کامل‌ترین پوشش خطوط، تور و آنتن)\n• پکیج Pro: ۱۷ دوربین (استاندارد لیگ برتر و مسابقات بین‌المللی)\n• پکیج Economics: ۱۳ دوربین (پوشش اقتصادی برای سالن‌ها و تمرینات)',
       en: 'Our volleyball video challenge system complies with FIVB standards, offering between 13 and 23 synchronized high-speed cameras depending on the tournament tier:\n\n• Super Pro: 23 cameras (full court, antenna & net coverage)\n• Pro: 17 cameras (ideal for national leagues & championships)\n• Economics: 13 cameras (cost-effective setup for club facilities)',
     },
     actionButton: {
@@ -202,11 +202,11 @@ export const FAQ_DATABASE: FAQItem[] = [
       en: 'Football VAR setup',
     },
     answer: {
-      fa: 'سامانه بازبینی ویدیویی فوتبال از دوربین‌های حرفه‌ای صنعتی با استاندارد 3G-SDI با تأخیر نزدیک به صفر بهره می‌برد. این سامانه با پوشش چندزاویه‌ای خط دروازه، محوطه جریمه و خطوط آفساید، فیدهای همزمان با کیفیتی را در اختیار داور و اتاق بازبینی قرار می‌دهد تا تصمیمات حساس داوری با نهایت دقت اتخاذ شوند.',
+      fa: 'سیستم بازبینی ویدیویی فوتبال از دوربین‌های حرفه‌ای صنعتی با استاندارد 3G-SDI با تأخیر نزدیک به صفر بهره می‌برد. این سیستم با پوشش چندزاویه‌ای خط دروازه، محوطه جریمه و خطوط آفساید، فیدهای همزمان با کیفیتی را در اختیار داور و اتاق بازبینی قرار می‌دهد تا تصمیمات حساس داوری با نهایت دقت اتخاذ شوند.',
       en: 'Our football video support and VAR system employs professional low-latency 3G-SDI broadcast cameras. Providing multi-angle synchronized feeds for the goal line, penalty area, and offside lines, it empowers referee teams to make confident, precise calls without game delays.',
     },
     actionButton: {
-      label: { fa: 'مشاهده سامانه فوتبال', en: 'View Football System' },
+      label: { fa: 'مشاهده سیستم فوتبال', en: 'View Football System' },
       href: '/products/football/',
     },
   },
@@ -234,7 +234,7 @@ export const FAQ_DATABASE: FAQItem[] = [
       en: 'Camera FPS / Frame rates',
     },
     answer: {
-      fa: 'دوربین‌های تخصصی سامانه دارای نرخ تصویربرداری ۱۲۰ تا ۲۴۰ فریم بر ثانیه (FPS) هستند. این سرعت بالا بازپخش فوق اسلوموشن (Super Slow-Motion) کاملاً روان و بدون تاری حرکتی را فراهم می‌سازد تا تماس‌های میلی‌متری توپ با خطوط، لمس تور و خطاهای سریع در چند ثانیه به وضوح بررسی شوند.',
+      fa: 'دوربین‌های تخصصی سیستم دارای نرخ تصویربرداری ۱۲۰ تا ۲۴۰ فریم بر ثانیه (FPS) هستند. این سرعت بالا بازپخش فوق اسلوموشن (Super Slow-Motion) کاملاً روان و بدون تاری حرکتی را فراهم می‌سازد تا تماس‌های میلی‌متری توپ با خطوط، لمس تور و خطاهای سریع در چند ثانیه به وضوح بررسی شوند.',
       en: 'Our specialized cameras capture at high-speed rates ranging from 120 up to 240+ frames per second (FPS). This delivers crisp super slow-motion replay without motion blur, enabling referees to detect millimeter-level line touches, net contacts, and rapid plays in real time.',
     },
     actionButton: {
@@ -269,12 +269,12 @@ export const FAQ_DATABASE: FAQItem[] = [
       en: 'Pricing & Quote inquiry',
     },
     answer: {
-      fa: 'ما خدمات ویدئوچک را به دو صورت منعطف ارائه می‌دهیم:\n\n۱. خرید کامل سیستم: همراه با نصب، گارانتی معتبر و آموزش کامل اپراتورهای داوری\n۲. اجاره تجهیزات: به همراه تیم فنی متخصص برای رویدادها، مسابقات و تورنمنت‌های فصلی\n\nبرای دریافت پیش‌فاکتور رسمی متناسب با سالن یا باشگاه خود، کافی است فرم استعلام قیمت را پر کنید.',
-      en: 'We offer flexible commercial arrangements for all organizations:\n\n1. Full System Purchase: Includes equipment, comprehensive warranty, installation, and operator training.\n2. Event Rental: Turnkey rental with on-site technical engineers for tournaments and cups.\n\nTo receive a detailed financial proposal tailored to your venue, please submit a quote inquiry.',
+      fa: 'ما خدمات ویدئوچک را به دو صورت منعطف ارائه می‌دهیم:\n\n۱. خرید کامل سیستم: همراه با نصب، گارانتی معتبر و آموزش کامل اپراتورهای داوری\n۲. اجاره تجهیزات: به همراه تیم فنی متخصص برای رویدادها، مسابقات و تورنمنت‌های فصلی\n\nبرای دریافت پیش‌فاکتور، برآورد هزینه‌ها و مشاوره تخصصی، می‌توانید از طریق صفحه تماس با ما در ارتباط باشید.',
+      en: 'We offer flexible commercial arrangements for all organizations:\n\n1. Full System Purchase: Includes equipment, comprehensive warranty, installation, and operator training.\n2. Event Rental: Turnkey rental with on-site technical engineers for tournaments and cups.\n\nTo receive a detailed financial proposal tailored to your venue, please get in touch with our specialists via our contact page.',
     },
     actionButton: {
-      label: { fa: 'درخواست استعلام قیمت', en: 'Request a Quote' },
-      href: '/quote/',
+      label: { fa: 'تماس با ما و مشاوره', en: 'Contact Specialists' },
+      href: '/contact/',
     },
   },
 ];
@@ -293,8 +293,8 @@ export const chatbotTranslations = {
   send: { fa: 'ارسال', en: 'Send' },
   quickTopics: { fa: 'موضوعات پرطرفدار:', en: 'Quick topics:' },
   fallbackMessage: {
-    fa: 'سپاس از سوال شما! متأسفانه هنوز پاسخ دقیقی برای این موضوع در حافظه راهنما ثبت نشده است. از آنجا که شرایط هر سالن و رشته ورزشی خاص است، پیشنهاد می‌کنم برای دریافت مشاوره مستقیم یا برآورد قیمت، از طریق صفحات زیر با کارشناسان ما در تماس باشید:',
-    en: "Thank you for asking! I don't have a specific answer for this topic in my knowledge base yet. Since technical requirements vary by venue and sport, we invite you to reach out directly to our specialists via our Quote or Contact pages:",
+    fa: 'سپاس از سوال شما! متأسفانه هنوز پاسخ دقیقی برای این موضوع در حافظه راهنما ثبت نشده است. از آنجا که شرایط هر سالن و رشته ورزشی خاص است، پیشنهاد می‌کنم برای دریافت مشاوره مستقیم یا برآورد قیمت، از طریق صفحه تماس با کارشناسان ما در ارتباط باشید:',
+    en: "Thank you for asking! I don't have a specific answer for this topic in my knowledge base yet. Since technical requirements vary by venue and sport, we invite you to reach out directly to our specialists via our Contact page:",
   },
   fallbackCtaQuote: {
     fa: 'استعلام قیمت و مشاوره',

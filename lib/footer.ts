@@ -1,6 +1,6 @@
 export const footerData = {
   mission: {
-    fa: 'طراح و مجری سامانه‌های پیشرفتهٔ بازبینی ویدئویی (Video Check) و داوری تصویری (VAR) برای فدراسیون‌ها، لیگ‌ها و باشگاه‌های ورزشی با رعایت بالاترین استانداردهای بین‌المللی.',
+    fa: 'طراح و مجری سیستم‌های پیشرفتهٔ بازبینی ویدئویی (Video Check) و داوری تصویری (VAR) برای فدراسیون‌ها، لیگ‌ها و باشگاه‌های ورزشی با رعایت بالاترین استانداردهای بین‌المللی.',
     en: 'Pioneering advanced Video Challenge and VAR systems for sports federations, leagues, and professional clubs in full compliance with international standards.',
   },
   complianceBadges: [
@@ -15,7 +15,7 @@ export const footerData = {
   },
   sportsLinks: [
     { id: 'volleyball', fa: 'ویدئوچک والیبال (FIVB)', en: 'Volleyball Challenge (FIVB)' },
-    { id: 'football', fa: 'سامانه VAR فوتبال', en: 'Football VAR Support' },
+    { id: 'football', fa: 'سیستم VAR فوتبال', en: 'Football VAR Support' },
     { id: 'futsal', fa: 'ویدئو ساپورت فوتسال', en: 'Futsal Video Review' },
     { id: 'basketball', fa: 'بازبینی فوری بسکتبال', en: 'Basketball Instant Review' },
     { id: 'other', fa: 'سایر رشته‌های ورزشی', en: 'Other Sport Systems' },
@@ -25,8 +25,8 @@ export const footerData = {
   },
   bottom: {
     rights: {
-      fa: 'تمامی حقوق مادی و معنوی متعلق به سامانه ویدئوچک ایران است.',
-      en: 'All rights reserved. Powered by Video Challenge Iran.',
+      fa: 'تمامی حقوق مادی و معنوی متعلق به سیستم ویدئوچک ایران است.',
+      en: 'All rights reserved. Powered by Power VC.',
     },
     switchLang: {
       fa: 'English Version',

@@ -10,7 +10,12 @@ export default function JsonLd() {
     logo: `${SITE_URL}/images/logo.webp`,
     email: c.email,
     telephone: c.phone,
-    address: { '@type': 'PostalAddress', addressLocality: 'Tehran', addressCountry: 'IR' },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: c.address.en,
+      addressLocality: 'Tehran',
+      addressCountry: 'IR',
+    },
     sameAs: Object.values(c.social).filter((url) => Boolean(url && url.length > 20)),
   };
   return (
@@ -20,3 +25,9 @@ export default function JsonLd() {
     />
   );
 }
+
+
+
+
+
+

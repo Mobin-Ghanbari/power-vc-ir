@@ -46,7 +46,7 @@ export default function ServiceCards({ lang }: { lang: Lang }) {
           </ul>
 
           <Link
-            href={`/${lang}/quote/?type=${s.id}`}
+            href={`/${lang}/contact/?type=${s.id}`}
             className="mt-8 rounded-xl bg-brand py-3.5 text-center text-lg font-bold text-white hover:opacity-90"
           >
             {t.more[lang]}

@@ -1,9 +1,9 @@
 export const home = {
   hero: {
-    title: { fa: 'تحلیل ویدئویی برای ارتقای عملکرد در ورزش‌ها', en: 'Video analysis to raise performance in sport' },
+    title: { fa: 'سیستم‌ پیشرفته ویدئو چلنج', en: 'Advanced Video Challenge Systems' },
     text: {
-      fa: 'سامانه ویدئوچک ایران با ارائه راهکارهای پیشرفتهٔ تحلیل ویدئویی به تیم‌ها و ورزشکاران در رشته‌های مختلف ورزشی کمک می‌کند تا عملکرد خود را به سطح بالاتری برسانند.',
-      en: 'Video Challenge Iran offers advanced video analysis that helps teams and athletes in many sports reach a higher level of performance.',
+      fa: 'سیستم ویدئوچک ایران با ارائه راهکارهای پیشرفتهٔ بازبینی تصاویر ورزشی، خطای داوری را به حداقل رسانده و دقت و عدالت را در بالاترین سطح مسابقات تضمین می‌کند.',
+      en: 'Power VC delivers cutting-edge sports video review and challenge solutions, minimizing officiating errors and ensuring fair, high-precision competition.',
     },
     cta: { fa: 'درخواست مشاوره', en: 'Request a consultation' },
   },
@@ -14,10 +14,10 @@ export const home = {
     { icon: 'target', fa: 'تخصص در ورزش‌های مختلف', en: 'Expertise across sports' },
   ],
   why: {
-    title: { fa: 'چرا Video Challenge Iran؟', en: 'Why Video Challenge Iran?' },
+    title: { fa: 'چرا Power VC؟', en: 'Why Power VC?' },
     text: {
-      fa: 'با بهره‌گیری از فناوری‌های پیشرفته، تحلیل ویدئویی را به ابزاری کاربردی برای بهبود عملکرد تیم‌ها و ورزشکاران در سراسر جهان تبدیل کرده‌ایم.',
-      en: 'Using advanced technology, we turn video analysis into a practical tool that improves the performance of teams and athletes worldwide.',
+      fa: 'با بهره‌گیری از فناوری‌های پیشرفتهٔ تصویربرداری پرسرعت، بازبینی تصاویر ورزشی را به ابزاری دقیق، قابل‌اعتماد و استاندارد برای داوران، فدراسیون‌ها و برگزارکنندگان رویدادهای ورزشی تبدیل کرده‌ایم.',
+      en: 'Leveraging cutting-edge high-speed imaging technology, we transform sports video review into an accurate, reliable, and standardized system for referees, federations, and tournament organizers worldwide.',
     },
     cta: { fa: 'بیشتر بدانید', en: 'Learn more' },
   },

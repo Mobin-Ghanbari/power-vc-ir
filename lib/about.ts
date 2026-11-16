@@ -1,14 +1,14 @@
 export const aboutPage = {
   title: { fa: 'درباره ما', en: 'About us' },
   text: {
-    fa: 'پیشگام در تحلیل ویدئویی Video Challenge Iran و ارتقای عملکرد در ورزش.',
-    en: 'Video Challenge Iran: a pioneer in video analysis and performance improvement in sport.',
+    fa: 'پیشگام در سیستم‌های بازبینی تصاویر ورزشی، ویدئو چلنج و داوری تصویری.',
+    en: 'Power VC: a pioneer in sports video review systems, video challenge, and video officiating technology.',
   },
   storyTitle: { fa: 'داستان ما', en: 'Our story' },
   story: [
     {
-      fa: 'Video Challenge Iran با هدف به‌کارگیری فناوری در حرفهٔ ورزش و تحلیل ویدئویی فعالیت خود را آغاز کرد. ما با تکیه بر تجربهٔ دانش فنی و همکاری با تیم‌های ورزشی در سراسر جهان، به دنبال کمک به باشگاه‌ها، فدراسیون‌ها و ورزشکاران برای بهبود عملکرد و دستیابی به نتایج بهتر هستیم.',
-      en: 'Video Challenge Iran began with a goal: bringing technology into professional sport through video analysis. Drawing on technical expertise and work with sports teams around the world, we help clubs, federations and athletes improve performance and reach better results.',
+      fa: 'Power VC با هدف به‌کارگیری پیشرفته‌ترین فناوری‌های بازبینی تصاویر ورزشی و داوری ویدئویی فعالیت خود را آغاز کرد. ما با تکیه بر تجربهٔ دانش فنی، دوربین‌های پرسرعت و همکاری در برگزاری رویدادهای ورزشی در سراسر جهان، به فدراسیون‌ها، لیگ‌ها و باشگاه‌ها کمک می‌کنیم تا بازبینی صحنه‌های حساس را با نهایت دقت، سرعت و شفافیت اجرا کنند.',
+      en: 'Power VC was founded to bring cutting-edge sports video review and video refereeing technologies into professional sports. Utilizing specialized high-speed cameras, super slow-motion replay, and multi-angle synchronization, we empower federations, leagues, and clubs to officiate competitions with utmost accuracy, fairness, and international compliance.',
     },
     {
       fa: 'امروز ما به‌عنوان یک شریک قابل اعتماد در کنار باشگاه‌ها، فدراسیون‌ها و تیم‌های ورزشی هستیم.',
@@ -22,7 +22,7 @@ export const aboutPage = {
     { icon: 'clock', value: '10+', label: { fa: 'سال تجربه و نوآوری', en: 'Years of sports-tech R&D' } },
   ],
   cta: {
-    text: { fa: 'بیایید آیندهٔ عملکرد ورزشی را با هم بسازیم.', en: "Let's build the future of sports performance together." },
+    text: { fa: 'بیایید آیندهٔ داوری و بازبینی تصاویر ورزشی را با هم بسازیم.', en: "Let's build the future of sports video review and officiating together." },
     button: { fa: 'تماس با ما', en: 'Contact us' },
   },
 };

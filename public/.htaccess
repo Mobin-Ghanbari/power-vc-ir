@@ -1,0 +1,146 @@
+# ======================================================================
+# Apache / LiteSpeed Configuration for Next.js Static Export
+# Optimized for cPanel / DirectAdmin / Shared Linux Hosting
+# ======================================================================
+
+# ----------------------------------------------------------------------
+# 1. Directory Index & Error Handling
+# ----------------------------------------------------------------------
+DirectoryIndex index.html index.htm
+ErrorDocument 404 /404.html
+
+# ----------------------------------------------------------------------
+# 2. Server Security & Charset Options
+# ----------------------------------------------------------------------
+# Disable directory listing
+Options -Indexes +FollowSymLinks
+
+# Default UTF-8 character encoding
+AddDefaultCharset UTF-8
+
+# ----------------------------------------------------------------------
+# 3. Clean URL Routing & Rewrites (mod_rewrite)
+# ----------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Enforce HTTPS redirect for production
+    RewriteCond %{HTTPS} off
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # 301 Redirects: Gracefully redirect decommissioned Quote page to Contact
+    RewriteRule ^(fa|en)/quote/?$ /$1/contact/ [R=301,L]
+    RewriteRule ^quote/?$ /fa/contact/ [R=301,L]
+
+    # Serve directly if the requested resource exists as a physical file
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+
+    # If the request matches a physical directory without a trailing slash, append it
+    # Ensures directory index (/fa/about -> /fa/about/) loads seamlessly
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteCond %{REQUEST_URI} !/$
+    RewriteRule ^(.*)$ $1/ [R=301,L]
+
+    # Serve directly if the requested resource exists as a physical directory
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Clean URL: Map extensionless route to .html file if it exists (e.g., /fa/about -> /fa/about.html)
+    RewriteCond %{REQUEST_FILENAME}.html -f
+    RewriteRule ^(.*)$ $1.html [L]
+
+    # Clean URL: If requested with trailing slash and corresponding .html exists
+    RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+    RewriteRule ^(.*)/$ $1.html [L]
+
+    # Redirect root to default locale (/fa/)
+    RewriteRule ^$ /fa/ [R=302,L]
+
+    # Fallback to 404.html for any remaining unmatched requests
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ 404.html [L]
+</IfModule>
+
+# ----------------------------------------------------------------------
+# 4. Gzip & Deflate Compression (mod_deflate)
+# ----------------------------------------------------------------------
+<IfModule mod_deflate.c>
+    # Compress Text, HTML, JavaScript, CSS, XML, JSON, Fonts, and SVG
+    AddOutputFilterByType DEFLATE text/plain \
+                                  text/html \
+                                  text/xml \
+                                  text/css \
+                                  text/javascript \
+                                  application/xml \
+                                  application/xhtml+xml \
+                                  application/rss+xml \
+                                  application/javascript \
+                                  application/x-javascript \
+                                  application/json \
+                                  image/svg+xml \
+                                  image/x-icon \
+                                  font/ttf \
+                                  font/otf \
+                                  font/woff \
+                                  font/woff2 \
+                                  application/font-woff \
+                                  application/font-woff2 \
+                                  application/vnd.ms-fontobject
+</IfModule>
+
+# ----------------------------------------------------------------------
+# 5. Browser Caching Headers (mod_expires & mod_headers)
+# ----------------------------------------------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+
+    # HTML documents: Revalidate to ensure latest deployed code is loaded
+    ExpiresByType text/html "access plus 0 seconds"
+
+    # Static CSS and JavaScript chunks (Next.js hashed assets in _next/static)
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
+
+    # Media & Images (WebP, SVG, PNG, JPEG, ICO)
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+
+    # Web Fonts
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Cache Next.js static assets with immutable header
+    <FilesMatch "\.(js|css)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+
+    # Cache images and font assets
+    <FilesMatch "\.(webp|jpg|jpeg|png|gif|svg|ico|woff|woff2|ttf|eot)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+
+    # HTML files must revalidate so clients pick up new deployments immediately
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "public, max-age=0, must-revalidate"
+    </FilesMatch>
+
+    # Security Headers
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

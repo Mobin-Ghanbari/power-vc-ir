@@ -12,9 +12,9 @@ type Meta = { title: Bi; description: Bi };
 // عنوان‌ها کوتاه‌اند؛ «| Video Challenge Iran» خودکار به انتها اضافه می‌شود
 export const pages: Record<string, Meta> = {
   '': {
-    title: { fa: 'ویدئوچک ایران | سامانه ویدئو چک والیبال', en: 'Video Challenge Iran | Volleyball Video Challenge & VAR' },
+    title: { fa: 'ویدئوچک ایران | سیستم ویدئو چک والیبال', en: 'Video Challenge Iran | Volleyball Video Challenge & VAR' },
     description: {
-      fa: 'سامانهٔ ویدئوچک ایران برای والیبال، فوتبال، فوتسال، بسکتبال و سایر ورزش‌ها؛ اجاره یا خرید با پشتیبانی فنی.',
+      fa: 'سیستم ویدئوچک ایران برای والیبال، فوتبال، فوتسال، بسکتبال و سایر ورزش‌ها؛ اجاره یا خرید با پشتیبانی فنی.',
       en: 'Video Challenge Iran provides video challenge systems for volleyball, football, futsal, basketball and more. Rent or buy with technical support.',
     },
   },
@@ -42,15 +42,15 @@ export const pages: Record<string, Meta> = {
   quote: {
     title: { fa: 'استعلام قیمت', en: 'Request a quote' },
     description: {
-      fa: 'فرم استعلام قیمت سامانهٔ ویدئوچک؛ فرم را پر کنید تا با شما تماس بگیریم.',
+      fa: 'فرم استعلام قیمت سیستم ویدئوچک؛ فرم را پر کنید تا با شما تماس بگیریم.',
       en: 'Request a quote for our video check system. Fill in the form and we will contact you.',
     },
   },
   about: {
     title: { fa: 'درباره ما', en: 'About us' },
     description: {
-      fa: 'با تیم و داستان ویدئوچک ایران آشنا شوید؛ پیشگام در تحلیل ویدئویی ورزش.',
-      en: 'Meet the Video Challenge Iran team and story, a pioneer in sports video analysis.',
+      fa: 'با تیم و داستان ویدئوچک ایران آشنا شوید؛ پیشگام در سیستم‌های بازبینی تصاویر ورزشی.',
+      en: 'Meet the Video Challenge Iran team and story, a pioneer in sports video review systems.',
     },
   },
   contact: {

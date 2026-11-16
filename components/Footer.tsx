@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { nav, tagline, type Lang } from '@/lib/i18n';
+import { nav, type Lang } from '@/lib/i18n';
 import { contactPage as c } from '@/lib/contact';
 import { footerData as f } from '@/lib/footer';
 
@@ -31,19 +31,12 @@ export default function Footer({ lang }: { lang: Lang }) {
             >
               <Image
                 src="/images/logo.webp"
-                alt="Video Challenge Iran"
+                alt="Power VC"
                 width={38}
                 height={38}
                 className="h-9 w-9 object-contain"
               />
-              <span className="leading-tight">
-                <span className="block text-lg font-extrabold text-white">
-                  Video Challenge Iran
-                </span>
-                <span className="block text-[11px] text-[#9DB0D0]">
-                  {tagline[lang]}
-                </span>
-              </span>
+              <span className="text-lg font-extrabold text-white">Power VC</span>
             </Link>
 
             <p className="text-xs leading-6 text-[#A3B8DE]">
@@ -232,7 +225,8 @@ export default function Footer({ lang }: { lang: Lang }) {
               </a>
             </div>
 
-            {/* Quote Action CTA */}
+            {/* Quote Action CTA (Hidden/Preserved) */}
+            {/*
             <div className="pt-2">
               <Link
                 href={`/${lang}/quote/`}
@@ -242,6 +236,7 @@ export default function Footer({ lang }: { lang: Lang }) {
                 <span aria-hidden="true">{isFa ? '←' : '→'}</span>
               </Link>
             </div>
+            */}
           </div>
         </div>
       </div>
@@ -249,7 +244,7 @@ export default function Footer({ lang }: { lang: Lang }) {
       {/* Bottom Bar: Copyright & Language Switcher */}
       <div className="border-t border-white/10 bg-[#051024]">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-5 py-5 sm:flex-row text-[11px] text-[#8095BC]">
-          <p>© {currentYear} Video Challenge Iran. {f.bottom.rights[lang]}</p>
+          <p>© {currentYear} Power VC. {f.bottom.rights[lang]}</p>
 
           <div className="flex items-center gap-4">
             <Link

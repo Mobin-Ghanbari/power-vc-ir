@@ -1,8 +1,8 @@
 export const servicesPage = {
   title: { fa: 'خدمات ما', en: 'Our services' },
   text: {
-    fa: 'بهترین گزینه‌ها برای نیازهای شما: اجاره یا خرید. انتخاب با شماست.',
-    en: 'The right options for your needs: rent or buy. The choice is yours.',
+    fa: 'تجهیز رویدادهای ورزشی به پیشرفته‌ترین سیستم‌های بازبینی تصاویر و ویدئوچک: اجاره یا خرید با پشتیبانی کامل.',
+    en: 'Equipping sporting events with advanced sports video review and challenge systems: rent or buy with full technical support.',
   },
   more: { fa: 'اطلاعات بیشتر', en: 'More info' },
 };

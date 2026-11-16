@@ -11,13 +11,16 @@ export const contactPage = {
     email: { fa: 'ایمیل', en: 'Email' },
     follow: { fa: 'ما را دنبال کنید', en: 'Follow us' },
   },
-  address: { fa: 'تهران، ایران', en: 'Tehran, Iran' },
-  phone: '+98 21 8877 6655',
-  email: 'info@videocheckiran.com',
+  address: {
+    fa: 'تهران، ضلع شمالی خیابان آزادی روبه روی درب کارخانه زمزم ، پلاک 417',
+    en: 'No. 417, North Side of Azadi Ave, Opposite Zamzam Factory Gate, Tehran, Iran',
+  },
+  phone: '+989909063634',
+  email: 'power.videocheck@gmail.com',
   social: {
     linkedin: 'https://www.linkedin.com/company/videocheck-iran',
-    instagram: 'https://www.instagram.com/videocheck.ir',
-    youtube: 'https://www.youtube.com/@videocheckiran',
+    instagram: 'https://www.instagram.com/p_v_ch?rpxt=MWwwbjhmZ2tnemJmeQ==',
+    youtube: 'https://youtube.com/@PowerVCS',
   },
   fields: {
     name: { fa: 'نام و نام خانوادگی', en: 'Full name' },
